@@ -1,0 +1,186 @@
+/* 
+    Document   : home
+    Created on : 12/11/2011, 09:39:11
+    Author     : Destroyer
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    font-family: Arial, Helvetica, cursive, sans-serif;
+    font-size: 12px;
+    color: #000;    
+}
+body {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#geral{
+    display: block;
+    width: 1270px;
+    height: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+#geral #top{
+    display: block;
+    width: 1182px;
+    height: 150px; 
+    border: 1px solid #0D4C82;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: #DEEDF5;
+}
+#geral #top div{
+    display: block;
+}
+#geral #top div#left{
+    float: left;
+    margin: 0 auto;
+    text-align: left;
+    width: 580px;
+}
+#geral #top div#left img{
+    margin-top: 50px;
+    margin-left: 10px;
+}
+#geral #top div#center{
+    float: left;  
+    width: 580px;
+    text-align: right;
+}
+#geral #top div#center img{
+    margin-top: 15px;
+}
+#geral #top div#right{
+    float: right;   
+    width: 49%;    
+    text-align: right;
+}
+#geral #top div#right img{
+    margin-top: -15px;
+    margin-right: 10px;
+    *margin-top: -10px;
+}
+#geral #top div#center div{
+    display: block;
+    width: 450px;
+    float: left;
+    margin-top: 20px;
+    height: 98px;
+    text-align: right;
+    font-size: 13px;
+    *margin-top: -100px;
+
+}
+#geral #menus{
+    display: block;
+    width: 1182px;  
+    border: 1px solid #0D4C82;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: 6px; 
+    height: 28px; 
+}
+#geral #menus div{
+    display: block;
+}
+#geral div#menus ul{
+    padding: 0;
+    margin: 0;   
+}
+#geral ul li a{
+    cursor: pointer;
+}
+#geral div#menus .ui-widget{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-weight: bold;
+}
+#geral #menus div#left{
+    width: 90%;
+    float: left;
+}
+#geral #menus #right{
+    float: right;
+}
+#geral #body{
+    display: block;
+    width: 1182px;
+    height: 550px; 
+    border: 1px solid #0D4C82;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: 6px;
+}
+
+#geral #body .ui-tabs-panel{
+    padding: 0;
+}
+
+#geral #footer{
+    display: block;
+    width: 1182px;
+    height: 50px; 
+    border: 1px solid #0D4C82;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 6px;
+    margin-bottom: 10px;
+    background-color: #DEEDF5;
+}
+#geral #footer span{
+    display: block;
+}
+#geral #footer #center{
+    line-height: 50px;
+    width: 350px;
+    float: left;
+}
+#geral #footer #center h3{
+    color: #0D4C82;
+}
+#geral #footer #right{
+    float: right;
+    text-align: right;
+    width: 30%;
+    margin-right: 10px;
+    line-height: 50px;
+}
+#geral #footer #right a{
+    font-weight: normal;
+    font-style: italic;
+    font-size: 11px;
+    color: #006B71;    
+}
+#geral #footer #right a:hover{
+    color: #50829D;
+}
+#geral #body .panelGrid{
+    margin-top: 5px;    
+}
+#geral #body .panelGrid .outputText, #geral #body .panelGrid label{
+    font-weight: bold;
+    color: black;
+    margin-right: 3px;
+}
+#geral #body .panelGrid input{
+    margin-right: 5px;
+}
+#geral #body .panelGrid textarea{
+    margin-right: 5px;
+}
+#geral #body .panelGrid select{
+    margin-right: 5px;
+}
+

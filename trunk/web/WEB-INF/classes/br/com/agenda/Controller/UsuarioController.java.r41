@@ -1,0 +1,137 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.agenda.Controller;
+
+import br.com.agenda.Business.LogAcessoBusiness;
+import br.com.agenda.Business.LogAcessoBusinessImp;
+import br.com.agenda.Business.UsuarioBusiness;
+import br.com.agenda.Business.UsuarioBusinessImp;
+import br.com.agenda.Crud.CrudBusiness;
+import br.com.agenda.Crud.CrudControllerImp;
+import br.com.agenda.Exceptions.AgendaException;
+import br.com.agenda.Model.Usuario;
+import br.com.agenda.Utils.Utils;
+import java.io.IOException;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpServletRequest;
+
+/**
+ *
+ * @author Destroyer
+ */
+@ManagedBean(name = "cUsuario")
+@RequestScoped
+public class UsuarioController extends CrudControllerImp<Usuario> {
+
+    private Usuario objUsuario;
+    private String senha2;
+
+    public UsuarioController() throws Exception {
+        try {
+            this.objUsuario = new Usuario();
+            getBusiness().setUsuario(getUsuarioSessions());
+        } catch (Exception ex) {
+            throw new AgendaException(ex, getUsuarioSessions());
+        }
+    }
+
+    public void validarUsuario(ActionEvent actionEvent) throws Exception {
+        this.objUsuario = ((UsuarioBusiness) getBusiness()).validarUsuario(getObjUsuario());
+        if (this.objUsuario != null) {
+            logIn(this.objUsuario);
+        } else {
+            FacesContext.getCurrentInstance().addMessage("msgLogic", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao logar", "Usuário ou senha incorretos."));
+        }
+    }
+
+    public void validarSenha(ActionEvent actionEvent) throws Exception {
+        if (getObjUsuario().getUsrSenha().equals("") || null == getObjUsuario().getUsrSenha() || getSenha2().equals("") || null == getSenha2()) {
+             FacesContext.getCurrentInstance().addMessage("msgLogic", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senhas inválidas", "Favor informar as senhas"));
+        } else {
+            if (((UsuarioBusiness) getBusiness()).validarSenhaUsuario(getObjUsuario(), getSenha2()) == true) {
+                objUsuario = getUsuarioSessions();
+                objUsuario.setUsrSenha(getSenha2());
+                UsuarioBusiness userBusiness = (UsuarioBusiness) getBusiness();
+                userBusiness.update(objUsuario);
+                System.out.print("Editado ");
+            } else {
+                FacesContext.getCurrentInstance().addMessage("msgLogic", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senhas inválidas", "As senhas informadas não conferem."));
+               
+            }
+        }
+    }
+
+    public String getSenha2() {
+        return senha2;
+    }
+
+    public void setSenha2(String senha2) {
+        this.senha2 = new Utils().gerarMD5(senha2);
+    }
+
+    public void logIn(Usuario bean) throws Exception {
+        try {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
+            String ip = request.getRemoteAddr();
+            LogAcessoBusiness businessLogAcesso = new LogAcessoBusinessImp(ip, bean);
+            new Thread(businessLogAcesso).start();
+            FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usrSession", bean);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("pages/home/home.xhtml");
+        } catch (Exception e) {
+            throw new AgendaException(e, getUsuarioSessions());
+        }
+    }
+
+    public void logOut() throws Exception {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("usrSession");
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("validaUsuarioAction");
+            this.objUsuario = null;
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/agenda/index.xhtml");
+        } catch (Exception e) {
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/agenda/index.xhtml");
+            } catch (IOException ex) {
+                throw new AgendaException(ex, getUsuarioSessions());
+            }
+        }
+    }
+
+    @Override
+    public Integer getId() {
+        return this.objUsuario.getUsrId();
+    }
+
+    @Override
+    public CrudBusiness<Usuario> getBusiness() throws Exception {
+        UsuarioBusiness business = new UsuarioBusinessImp();
+        return business;
+    }
+
+    @Override
+    public void clear() throws Exception {
+        this.objUsuario = new Usuario();
+    }
+
+    @Override
+    public Usuario getBean() throws Exception {
+        return getObjUsuario();
+    }
+
+    public Usuario getObjUsuario() {
+        return objUsuario;
+    }
+
+    public void setObjUsuario(Usuario objUsuario) {
+        this.objUsuario = objUsuario;
+    }
+}

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:loadBundle basename="br.com.agenda.Constants.Constantes" var="Constantes"/>    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
+        <link rel="Shortcut Icon" href="../../img/liferay.ico" />
+        <title>#{Constantes.titulo_sistema}</title>
+        <link rel="stylesheet" type="text/css" href="../../css/form.css"  />
+        <script type="text/javascript" src="../../javascript/form.js" ></script>
+        <ui:insert name="css_js"></ui:insert>
+    </h:head>
+    <h:body>
+        <div id="geral">
+            <div id="top" class="ui-corner-all">
+                <div id="left">  
+                    <div id="imgTop">
+                        <a href="../../pages/home/home.xhtml"><img border="0" title="Home" src="../../img/logo.png" /></a>                       
+                    </div>                      
+                </div>  
+                <div id="center">
+                    <img border="0" title="#{Constantes.nome_governador}" src="../../img/Governador.jpg" />
+                    <div id="descMenus">
+                        Governador do Estado de Pernambuco <font size="18"><b>#{Constantes.nome_governador}</b></font><br />
+                        <b>Usuário:</b> #{cUsuario.usuarioSessions.usrNome} - #{cUsuario.data}<br/><br/><br/><br/>
+
+                    </div>                     
+                </div>                
+            </div>
+            <div id="menus" class="ui-corner-all">    
+                <div id="left">
+                    <p:menubar autoSubmenuDisplay="true" effectDuration="0" model="#{cMenu.modelo}"/>                        
+                </div>
+                <div id="right">
+                    <h:form id="frm1" >
+                        <p:tooltip for="logout" targetPosition="topLeft" position="bottomRight" value="Sair do sistema" />
+                        <p:commandButton id="logout" value="Logout" actionListener="#{cUsuario.logOut()}" />
+                    </h:form>
+                </div>                
+            </div>
+            <div id="body" class="ui-corner-all">
+                <font size="17" color="red" style="display: block ;margin: 5px; margin-top: 10px;"><b style="color: #15286C; margin: 5px; margin-top: 10px; font-size: 14px; letter-spacing: 2px;"> #{cMenu.objMenu.menuDescr}</b></font>
+                <p:tabView style="border: none;">
+                    <p:tab title="Pesquisar">
+                        <h:form id="form_pesq">
+                            <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+                            <p:dialog modal="true" id="processando" widgetVar="statusDialog" header="Status"
+                                      draggable="false" closable="false" showEffect="fade" hideEffect="explode">
+                                Processando...
+                            </p:dialog>                             
+                            <p:messages id="msgLogic" globalOnly="true" showDetail="true" showSummary="true" />
+                            <p:growl id="msgLogic2" showDetail="true" showSummary="true" />
+                            <ui:insert name="corpo_pesq">
+                            </ui:insert>
+                        </h:form>
+                    </p:tab>
+                    <p:tab title="Cadastrar">
+                        <h:form id="form_cad">
+                            <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+                            <p:dialog modal="true" id="processando" widgetVar="statusDialog" header="Status"
+                                      draggable="false" closable="false" showEffect="fade" hideEffect="explode">
+                                Processando...
+                            </p:dialog>                             
+                            <p:messages id="msgLogic" globalOnly="true" showDetail="true" showSummary="true" />
+                            <p:growl id="msgLogic2" showDetail="true" showSummary="true" />
+                            <ui:insert name="corpo_cad">
+                            </ui:insert>
+                        </h:form>
+                    </p:tab>
+                    <p:tab title="Relatório">
+                        <h:form id="form_rel">
+                            <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+                            <p:dialog modal="true" id="processando" widgetVar="statusDialog" header="Status"
+                                      draggable="false" closable="false" showEffect="fade" hideEffect="explode">
+                                Processando...
+                            </p:dialog>                             
+                            <p:messages id="msgLogic" globalOnly="true" showDetail="true" showSummary="true" />
+                            <p:growl id="msgLogic2" showDetail="true" showSummary="true" />
+                            <ui:insert name="corpo_rel">
+                                
+                            </ui:insert>
+                            <p:panel header="Exportar Dados">  
+                                <h:commandLink>  
+                                    <p:graphicImage value="../../img/excel.png" />  
+                                    <p:dataExporter type="xls" target="tbl_pesq" fileName="relatorio" />  
+                                </h:commandLink>  
+
+                                <h:commandLink>  
+                                    <p:graphicImage value="../../img/pdf.png" />  
+                                    <p:dataExporter type="pdf" target="tbl_pesq" fileName="relatorio"/>  
+                                </h:commandLink>  
+
+                                <h:commandLink>  
+                                    <p:graphicImage value="../../img/csv.png" />  
+                                    <p:dataExporter type="csv" target="tbl_pesq" fileName="relatorio" />  
+                                </h:commandLink>  
+
+                                <h:commandLink>  
+                                    <p:graphicImage value="../../img/xml.png" />  
+                                    <p:dataExporter type="xml" target="tbl_pesq" fileName="relatorio" />  
+                                </h:commandLink>  
+                            </p:panel>                              
+                        </h:form>
+                    </p:tab>
+                </p:tabView>
+            </div>
+            <div id="footer" class="ui-corner-all">
+                <span id="center">
+                    <h3>#{Constantes.nome_sistema}</h3>
+                </span>
+                <span id="right">
+                    <h:form id="form2">
+                        <p:tooltip for="powered" targetPosition="topLeft" position="bottomRight" value="Central IT - Tecnologia em Negócios" />
+                        <p:commandLink target="_blank" action="http://www.centralit.com.br/" id="powered" value="Powered by Central IT" />  
+                    </h:form>                    
+                </span>
+            </div>            
+        </div>
+    </h:body>
+</html>
+

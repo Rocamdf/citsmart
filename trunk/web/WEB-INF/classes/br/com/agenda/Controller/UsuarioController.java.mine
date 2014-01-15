@@ -1,0 +1,191 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.agenda.Controller;
+
+import br.com.agenda.Business.LogAcessoBusiness;
+import br.com.agenda.Business.LogAcessoBusinessImp;
+import br.com.agenda.Business.UsuarioBusiness;
+import br.com.agenda.Business.UsuarioBusinessImp;
+import br.com.agenda.Crud.CrudBusiness;
+import br.com.agenda.Crud.CrudControllerImp;
+import br.com.agenda.Dao.UsuarioDao;
+import br.com.agenda.Exceptions.AgendaException;
+import br.com.agenda.Model.Usuario;
+import java.io.IOException;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+/**
+ *
+ * @author Destroyer
+ */
+@ManagedBean(name = "cUsuario")
+@RequestScoped
+public class UsuarioController extends CrudControllerImp<Usuario> {
+
+    private Usuario objUsuario = new Usuario();
+    // controla a lista de usuários na pesquisa
+    private List<Usuario> listaUsuarios;
+    /* atributos para controlar a pesquisa */
+    private String usrNomePesq;
+    private String usrTipoPesq;
+    private String orderBy;
+    // atributo usado para validar a confirmação da senha
+    private String usrSenha2;
+
+    public UsuarioController() throws Exception {
+        try {
+            getBusiness().setUsuario(getUsuarioSessions());
+        } catch (Exception ex) {
+            throw new AgendaException(ex, getUsuarioSessions());
+        }
+        listaUsuarios = new java.util.ArrayList<Usuario>();  
+    }
+
+    public void validarUsuario(ActionEvent actionEvent) throws Exception {
+        this.objUsuario = ((UsuarioBusiness) getBusiness()).validarUsuario(getObjUsuario());
+        if (this.objUsuario != null) {
+            logIn(this.objUsuario);
+        } else {
+            FacesContext.getCurrentInstance().addMessage("msgLogic", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro ao logar", "Usuário ou senha incorretos."));
+        }
+    }
+
+    /**
+     * Verifica se senha e confirmaçã de senha conhecidem.
+     * @throws Exception Lançada caso senha e confirmação de senha não conhecidam.
+     */
+    public void validarSenha() throws Exception {
+        
+        if(!((UsuarioBusiness)getBusiness()).validarSenhaUsuario(objUsuario, usrSenha2));
+            throw new AgendaException(new Exception("Senha e confirmação de senha inválidas."), getUsuarioSessions());
+    }
+
+    public void logIn(Usuario bean) throws Exception {
+        try {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            HttpServletRequest request = (HttpServletRequest) fc.getExternalContext().getRequest();
+            String ip = request.getRemoteAddr();
+            LogAcessoBusiness businessLogAcesso = new LogAcessoBusinessImp(ip, bean);
+            new Thread(businessLogAcesso).start();
+            FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usrSession", bean);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("pages/home/home.xhtml");
+        } catch (Exception e) {
+            throw new AgendaException(e, getUsuarioSessions());
+        }
+    }
+
+    public void logOut() throws Exception {
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("usrSession");
+            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove("validaUsuarioAction");
+            this.objUsuario = null;
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/agenda/index.xhtml");
+        } catch (Exception e) {
+            try {
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/agenda/index.xhtml");
+            } catch (IOException ex) {
+                throw new AgendaException(ex, getUsuarioSessions());
+            }
+        }
+    }
+
+    @Override
+    public Integer getId() {
+        return this.objUsuario.getUsrId();
+    }
+
+    @Override
+    public CrudBusiness<Usuario> getBusiness() throws Exception {
+        UsuarioBusiness business = new UsuarioBusinessImp();
+        return business;
+    }
+
+    @Override
+    public void clear() throws Exception {
+        this.objUsuario = new Usuario();
+        this.setUsrSenha2(null);
+    }
+
+    @Override
+    public Usuario getBean() throws Exception {
+        return getObjUsuario();
+    }
+
+    public void pesquisar(ActionEvent evt) throws Exception {
+        
+        UsuarioDao dao = new UsuarioDao();
+        
+        // busca todos
+        if((getUsrNomePesq() == null || getUsrNomePesq().equals(""))
+                && (getUsrTipoPesq() == null || getUsrTipoPesq().equals(""))){
+            setListaUsuarios(dao.select());
+            return;
+        }
+        
+        String sql = "FROM br.com.agenda.Model.Usuario " 
+                + "WHERE usr_nome = ? ";
+        String orderByAux = " ORDER BY ?";
+ 
+        if(!getUsrTipoPesq().equals("")){
+            sql += " AND usr_tipo = ? " + orderByAux;
+            setListaUsuarios(dao.list(Usuario.class, sql, getUsrNomePesq(), getUsrTipoPesq(), getOrderBy()));
+        }
+        else{
+            sql += orderByAux;
+            setListaUsuarios(dao.list(Usuario.class, sql, getUsrNomePesq(), getOrderBy()));
+        }
+        
+        int size = getListaUsuarios().size();
+    }
+    
+    @Override
+    public void delete() throws Exception{
+        
+        // recupera o id do usuário a ser removido
+        String id = FacesContext
+                .getCurrentInstance()
+                .getExternalContext()
+                .getRequestParameterMap()
+                .get("idObjRemove");  
+  
+        // configura o atributo de instância com o id recuperado
+        setObjUsuario(new Usuario());
+        getObjUsuario().setUsrId(Integer.parseInt(id));
+        super.delete();
+    }
+    
+    /* Getters and Setters */
+    public Usuario getObjUsuario() { return objUsuario; }
+
+    public void setObjUsuario(Usuario objUsuario) { this.objUsuario = objUsuario; }
+
+    public List getListaUsuarios() { return listaUsuarios; }
+
+    public void setListaUsuarios(List listaUsuarios) { this.listaUsuarios = listaUsuarios; }
+
+    public String getUsrNomePesq() { return usrNomePesq; }
+    
+    public void setUsrNomePesq(String usrNomePesq) { this.usrNomePesq = usrNomePesq; }
+
+    public String getUsrTipoPesq() { return usrTipoPesq; }
+
+    public void setUsrTipoPesq(String usrTipoPesq) { this.usrTipoPesq = usrTipoPesq; }
+    
+    public String getUsrSenha2() { return usrSenha2; }
+    
+    public void setUsrSenha2(String usrSenha2) { this.usrSenha2 = usrSenha2; }
+    
+    public String getOrderBy() { return orderBy; }
+    
+    public void setOrderBy(String orderBy){  this.orderBy = orderBy; }
+}

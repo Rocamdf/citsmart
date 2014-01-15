@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<funcionalidades>
+	<funcionalidade security="MASTER,MEDICO" nome="FICHA" descricao="Ficha (Cadastro)" path="/pages/prontuarioEletronicoCadastro/prontuarioEletronicoCadastro.load" />
+    <funcionalidade security="MASTER,MEDICO" nome="RESUMO" descricao="Consulta" path="/pages/prontuarioEletronicoPessoasQuestionario/prontuarioEletronicoPessoasQuestionario.load?parm=81" />	
+    <funcionalidade security="MASTER,MEDICO" nome="PROBLEMAS" descricao="Problemas" path="/pages/prontuarioEletronicoProblemas/prontuarioEletronicoProblemas.load" />
+    <funcionalidade security="MASTER,MEDICO" nome="DIAGNOSTICO" descricao="Diagnóstico" path="/pages/prontuarioEletronicoDiagnostico/prontuarioEletronicoDiagnostico.load" />
+    <funcionalidade security="MASTER,MEDICO" nome="RECEITURARIO" descricao="Receituário/Prescrição" path="/pages/prontuarioEletronicoReceituario/prontuarioEletronicoReceituario.load" />
+    <funcionalidade security="MASTER,MEDICO" nome="EXAMES_PROCEDIMENTOS" descricao="Exames/ Procedimentos" path="/pages/prontuarioEletronicoProcedimentos/prontuarioEletronicoProcedimentos.load" />
+    <funcionalidade security="MASTER,MEDICO" nome="EXAMES_LAB" descricao="Exames Laboratoriais" path="/pages/prontuarioEletronicoExamesLab/prontuarioEletronicoExamesLab.load" />
+    <funcionalidade security="MASTER,MEDICO" nome="IMAGENS" descricao="Anexos" path="/pages/prontuarioEletronicoImagens/prontuarioEletronicoImagens.load" />
+    <funcionalidade security="MASTER,MEDICO" nome="EVOLUCAO" descricao="Evolução" path="/pages/prontuarioEletronicoEvolucao/prontuarioEletronicoEvolucao.load" />
+    <funcionalidade security="MASTER,MEDICO" nome="ENFERMAGEM" descricao="Enfermagem" path="">
+    	<funcionalidade security="MASTER,MEDICO,ENFERMEIRO" nome="ENFERMAGEM_PRESC" descricao="Prescrições" path="/pages/prontuarioEletronicoEnfermagemPrescricao/prontuarioEletronicoEnfermagemPrescricao.load" />
+   		<funcionalidade security="MASTER,MEDICO,ENFERMEIRO" nome="EVOLUCAO_ENF" descricao="Evolução" path="/pages/prontuarioEletronicoEvolucao/prontuarioEletronicoEvolucao.load" />
+   		<funcionalidade security="MASTER,MEDICO,ENFERMEIRO" nome="ENFERMAGEM_CUIDADOS" descricao="Cuidados" path="/pages/prontuarioEletronicoEnfermagemCuidados/prontuarioEletronicoEnfermagemCuidados.load" />
+		<funcionalidade security="MASTER,MEDICO,ENFERMEIRO" nome="ENFERMAGEM_PROC" descricao="Procedimentos" path="/pages/prontuarioEletronicoEnfermagemProcedimentos/prontuarioEletronicoEnfermagemProcedimentos.load" />       		
+		<funcionalidade security="MASTER,MEDICO,ENFERMEIRO" nome="ENFERMAGEM_HEMOD" descricao="Hemodinâmica" path="/pages/prontuarioEletronicoEnfermagemHemodinamica/prontuarioEletronicoEnfermagemHemodinamica.load" />
+    </funcionalidade>   
+    <funcionalidade security="MASTER,MEDICO" nome="PROGRAMAS" descricao="Programas" path="/pages/prontuarioEletronicoProgramas/prontuarioEletronicoProgramas.load">
+    </funcionalidade>
+    <funcionalidade security="MASTER,MEDICO" nome="VACINAS" descricao="Vacinas" path="/pages/prontuarioEletronicoVacinas/prontuarioEletronicoVacinas.load">
+    </funcionalidade> 
+    <funcionalidade security="MASTER,MEDICO" nome="LICENCAS" descricao="Licenças" path="/pages/prontuarioEletronicoLicencas/prontuarioEletronicoLicencas.load">
+    </funcionalidade> 
+    <funcionalidade security="MASTER,MEDICO" nome="ENCAMINHAMENTOS" descricao="Encaminhamentos" path="/pages/prontuarioEletronicoPessoasQuestionario/prontuarioEletronicoPessoasQuestionario.load?parm=45">
+    </funcionalidade>    
+    <funcionalidade security="MASTER,MEDICO" nome="CARDIO" descricao="Cardiologia" path="/pages/prontuarioEletronicoPessoasQuestionario/prontuarioEletronicoPessoasQuestionario.load?parm=49">
+    </funcionalidade>
+    <funcionalidade security="MASTER,MEDICO" nome="NUTRICAO" descricao="Nutrição" path="/pages/prontuarioEletronicoPessoasQuestionario/prontuarioEletronicoPessoasQuestionario.load?parm=47">
+    </funcionalidade>           
+    <funcionalidade security="MASTER,MEDICO" nome="OCUPACIONAL" descricao="Medicina Ocupacional" path="">
+    	<funcionalidade security="MASTER,MEDICO" nome="OCUP_ADM" descricao="Admissional" path="/pages/prontuarioEletronicoPessoasQuestionario/prontuarioEletronicoPessoasQuestionario.load?parm=31" />
+    	<funcionalidade security="MASTER,MEDICO" nome="OCUP_PER" descricao="Períodico/ Demissional" path="/pages/prontuarioEletronicoPessoasQuestionario/prontuarioEletronicoPessoasQuestionario.load?parm=33"></funcionalidade>
+    </funcionalidade>  
+    <funcionalidade security="MASTER,MEDICO" nome="PSICOLOG" descricao="Psicologia" path="/pages/prontuarioEletronicoPessoasQuestionario/prontuarioEletronicoPessoasQuestionario.load?parm=41" />    
+    <funcionalidade security="MASTER,MEDICO" nome="FISIOT" descricao="Fisioterapia" path="/pages/prontuarioEletronicoPessoasQuestionario/prontuarioEletronicoPessoasQuestionario.load?parm=61" />    
+    <funcionalidade security="MASTER,MEDICO" nome="FONOAUDIO" descricao="Fonoaudiologia" path="/pages/prontuarioEletronicoPessoasQuestionario/prontuarioEletronicoPessoasQuestionario.load?parm=65" />    
+    <funcionalidade security="MASTER,MEDICO" nome="AUDIOMETRIA" descricao="Audiométria" path="/pages/prontuarioEletronicoAudiometria/prontuarioEletronicoAudiometria.load">
+    </funcionalidade>       
+    <funcionalidade security="MASTER,MEDICO" nome="INFECCAO" descricao="Infecção" path="/pages/prontuarioEletronicoInfeccao/prontuarioEletronicoInfeccao.load">
+    </funcionalidade>                   
+</funcionalidades>

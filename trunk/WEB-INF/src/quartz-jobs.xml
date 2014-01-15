@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<quartz xmlns="http://www.opensymphony.com/quartz/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" overwrite-existing-jobs="true">
+	<job>
+		<job-detail>
+ 			<name>JobDisparaEventos</name>
+			<group>DEFAULT</group>
+			<description>Dispara eventos agendados</description>
+			<job-class>br.com.centralit.citcorpore.quartz.job.DisparaEvento</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>JobDisparaEventosTrigger</name>
+				<group>DEFAULT</group>
+ 				<job-name>JobDisparaEventos</job-name>
+				<job-group>DEFAULT</job-group>
+				<cron-expression>0 55 20 ? * *</cron-expression>
+			</cron>
+		</trigger>
+	</job>
+<!-- 	sincronizador AD -->
+	<job>
+		<job-detail>
+ 			<name>JobDisparaSincronizacao</name>
+			<group>DEFAULT</group>
+			<description>Sincroniza o citsmart com as informações do AD</description>
+			<job-class>br.com.centralit.citcorpore.quartz.job.DisparaSincronizaAD</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>JobDisparaSincronizacaoTrigger</name>
+				<group>DEFAULT</group>
+ 				<job-name>JobDisparaSincronizacao</job-name>
+				<job-group>DEFAULT</job-group>
+				<cron-expression>0 55 23 ? * *</cron-expression>
+			</cron>
+		</trigger>
+	</job>
+<!-- 	fim -->
+<!-- 	Executar backup -->
+	<job>
+		<job-detail>
+ 			<name>JobExecutaBackup</name>
+			<group>DEFAULT</group>
+			<description>Executa backup da tabela LogDados </description>
+			<job-class>br.com.centralit.citcorpore.quartz.job.ExecutaBackupLogDados</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>JobExecutaBackupTrigger</name>
+				<group>DEFAULT</group>
+ 				<job-name>JobExecutaBackup</job-name>
+				<job-group>DEFAULT</job-group>
+				<cron-expression>0 23 23 ? * *</cron-expression>
+			</cron>
+		</trigger>
+	</job>
+<!-- 	fim -->
+	
+	<job>
+		<job-detail>
+			<name>JobDisparaNetMap</name>
+			<group>DEFAULT</group>
+			<description>Dispara busca de IP na Rede</description>
+			<job-class>br.com.centralit.citcorpore.quartz.job.DisparaNetMap</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>JobDisparaNetMapTrigger</name>
+				<group>DEFAULT</group>
+				<job-name>JobDisparaNetMap</job-name>
+				<job-group>DEFAULT</job-group>
+				<cron-expression>0 15 21 ? * *</cron-expression>
+			</cron>
+		</trigger>
+	</job>
+	
+	<job>
+		<job-detail>
+			<name>JobDisparaInventario</name>
+			<group>DEFAULT</group>
+			<description>Dispara Inventario </description>
+			<job-class>br.com.centralit.citcorpore.quartz.job.DisparaInventario</job-class>
+		</job-detail>
+		<trigger>
+			<cron>
+				<name>JobDisparaInventarioTrigger</name>
+				<group>DEFAULT</group>
+				<job-name>JobDisparaInventario</job-name>
+				<job-group>DEFAULT</job-group>
+				<cron-expression>0 15 22 ? * *</cron-expression>
+			</cron>
+		</trigger>
+	</job>
+
+
+</quartz>

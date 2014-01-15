@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+
+<classloading xmlns="urn:jboss:classloading:1.0"
+              name="citsmart.war"
+              domain="DefaultDomain"
+              parent-first="false"             
+              top-level-classloader="true"
+              parent-domain="Ignored"
+              export-all="NON_EMPTY"
+              import-all="true">
+</classloading>
+<!-- /*
+<classloading xmlns="urn:jboss:classloading:1.0"  
+	domain="IsolatedDomain"  
+	parent-first="false"  
+	export-all="NON_EMPTY"  
+	import-all="true">  
+</classloading>  
+*/ -->

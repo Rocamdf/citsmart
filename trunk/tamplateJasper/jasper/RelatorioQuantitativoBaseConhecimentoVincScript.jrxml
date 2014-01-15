@@ -1,0 +1,810 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioQuantitativo" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="BlankPage" columnWidth="782" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" isSummaryWithPageHeaderAndFooter="true" isFloatColumnFooter="true" uuid="9bf5eadf-be46-4fc8-af7c-925af2fb0b72">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.0000000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<style name="Crosstab Data Text" hAlign="Center"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#A9A9A9">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 4_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 5_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 6_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 7_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TH" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_CH" mode="Opaque" backcolor="#FFBFBF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 8_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="8052bdeb-fa7d-4b08-91ac-df6ac94cfee6">
+		<parameter name="dataset" class="java.util.List" isForPrompting="false"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="titulo" class="java.lang.String">
+			<fieldDescription><![CDATA[titulo]]></fieldDescription>
+		</field>
+		<field name="idProblema" class="java.lang.Integer">
+			<fieldDescription><![CDATA[idProblema]]></fieldDescription>
+		</field>
+		<field name="identificacao" class="java.lang.String">
+			<fieldDescription><![CDATA[identificacao]]></fieldDescription>
+		</field>
+		<field name="idRequisicaoMudanca" class="java.lang.Integer">
+			<fieldDescription><![CDATA[idRequisicaoMudanca]]></fieldDescription>
+		</field>
+		<field name="idSolicitacaoServicoIncidente" class="java.lang.Integer">
+			<fieldDescription><![CDATA[idSolicitacaoServicoIncidente]]></fieldDescription>
+		</field>
+		<field name="idSolicitacaoServicoRequisicao" class="java.lang.Integer">
+			<fieldDescription><![CDATA[idSolicitacaoServicoRequisicao]]></fieldDescription>
+		</field>
+		<field name="vinculaConhecimentoServico" class="java.lang.String">
+			<fieldDescription><![CDATA[vinculaConhecimentoServico]]></fieldDescription>
+		</field>
+		<field name="listaIC" class="java.util.List">
+			<fieldDescription><![CDATA[listaIC]]></fieldDescription>
+		</field>
+		<field name="listaIncidente" class="java.util.List">
+			<fieldDescription><![CDATA[listaIncidente]]></fieldDescription>
+		</field>
+		<field name="listaMudanca" class="java.util.List">
+			<fieldDescription><![CDATA[listaMudanca]]></fieldDescription>
+		</field>
+		<field name="listaProblema" class="java.util.List">
+			<fieldDescription><![CDATA[listaProblema]]></fieldDescription>
+		</field>
+		<field name="listaRequisitos" class="java.util.List">
+			<fieldDescription><![CDATA[listaRequisitos]]></fieldDescription>
+		</field>
+		<field name="listaServico" class="java.util.List">
+			<fieldDescription><![CDATA[listaServico]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="SubTable Dataset 1" uuid="2043ffb3-489d-4bb3-8dc4-40b506f86654">
+		<parameter name="dataset" class="java.util.List" isForPrompting="false"/>
+		<field name="idSolicitacaoServicoIncidente" class="java.lang.Integer">
+			<fieldDescription><![CDATA[idSolicitacaoServicoIncidente]]></fieldDescription>
+		</field>
+	</subDataset>
+	<subDataset name="SubTable Dataset 2" uuid="f7f6b522-5af8-46cc-bb45-f474ea1c3c98">
+		<field name="idSolicitacaoServicoRequisicao" class="java.lang.Integer">
+			<fieldDescription><![CDATA[idSolicitacaoServicoRequisicao]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="TITULO_RELATORIO" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="DATA_HORA" class="java.sql.Timestamp" isForPrompting="false"/>
+	<parameter name="NOME_USUARIO" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String">
+		<defaultValueExpression><![CDATA["C:\\Program Files\\jboss\\server\\default\\deploy\\CitTesteRelatorio.war\\tamplateJasper\\jasper\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="dataInicio" class="java.util.Date" isForPrompting="false"/>
+	<parameter name="dataFim" class="java.util.Date" isForPrompting="false"/>
+	<parameter name="CIDADE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="TOTAL_CONHECIMENTO_CRIADO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="TOTAL_CONHECIMENTO_APROVADO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="CONHECIMENTO_VINCULADO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="CONHECIMENTO_NAO_VINCULADO" class="java.lang.Integer" isForPrompting="false"/>
+	<parameter name="dataset" class="java.util.List" isForPrompting="false"/>
+	<parameter name="Logo" class="java.io.File">
+		<parameterDescription><![CDATA[Logomarca]]></parameterDescription>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="listaConhecimentoQuantitativoEmLista" class="java.util.Collection">
+		<fieldDescription><![CDATA[listaConhecimentoQuantitativoEmLista]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="47" splitType="Stretch">
+			<frame>
+				<reportElement uuid="5a6d6c38-4f7e-4b10-8551-110aafdd6e76" key="frame-3" positionType="Float" stretchType="RelativeToBandHeight" mode="Opaque" x="0" y="0" width="782" height="47" isRemoveLineWhenBlank="true" forecolor="#CCCCCC" backcolor="#EFEFEF"/>
+				<box>
+					<pen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<topPen lineWidth="0.75" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.75" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.75" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.75" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textField isBlankWhenNull="false">
+					<reportElement uuid="7dd7e6b6-10e7-4f67-ab13-7a6842a5bb85" key="textField-50" x="74" y="1" width="708" height="24" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="14"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{TITULO_RELATORIO}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="a2cf0219-17f8-4684-b10a-19fdbb19d036" key="staticText-32" x="348" y="25" width="44" height="18"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif" size="9" isBold="true" isItalic="false" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.periodo}+":"]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+					<reportElement uuid="2b4aaf44-4b01-40a2-adc3-01c82124c2ce" key="textField-51" x="391" y="25" width="51" height="18"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{dataInicio}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="40265036-d736-4c13-8a45-21fc8ffa72d5" key="staticText-33" x="442" y="25" width="12" height="18"/>
+					<textElement verticalAlignment="Middle" markup="none">
+						<font fontName="SansSerif" size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.a}]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy" isBlankWhenNull="false">
+					<reportElement uuid="453d958c-cd70-4d2d-8bb4-55970d437d93" key="textField-52" x="452" y="25" width="60" height="18"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="9"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{dataFim}]]></textFieldExpression>
+				</textField>
+				<image>
+					<reportElement uuid="d79da48d-0edb-4637-bd49-38c9ca8216bf" stretchType="RelativeToBandHeight" x="5" y="4" width="176" height="21" isRemoveLineWhenBlank="true"/>
+					<imageExpression><![CDATA[$P{Logo}]]></imageExpression>
+				</image>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="129" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3d404493-e5d3-429a-8562-b940e9442ae7" isPrintRepeatedValues="false" x="8" y="15" width="504" height="24" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true"/>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement uuid="9b2cfbe6-d8f9-4256-acdf-298e7c26fbce" key="table 8" style="table 8" x="8" y="43" width="760" height="80"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset 1" uuid="495c436d-1452-4905-bf4b-518b3dbd5ff9">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listaConhecimentoQuantitativoEmLista})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column uuid="297ef01b-7e75-4d11-b8a6-a9ca63bcd154" width="208">
+						<jr:tableFooter height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="208" height="30" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.total}]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader height="40" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="208" height="40" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento.conhecimento}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true">
+								<reportElement uuid="96112dd9-fd16-481c-82b9-1b5e060d354e" positionType="Float" stretchType="RelativeToBandHeight" isPrintRepeatedValues="false" x="0" y="0" width="208" height="30" isRemoveLineWhenBlank="true"/>
+								<box>
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="b4bfbbab-fd48-4efe-aabb-1d13bd669a9f" width="90">
+						<jr:tableFooter height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}.toString()]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader height="40" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="40" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento.incidente}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<componentElement>
+								<reportElement uuid="ea5d8941-bae2-4141-9e4f-88e7d91b9d06" key="table 9" x="0" y="0" width="90" height="30"/>
+								<jr:table>
+									<datasetRun subDataset="SubTable Dataset 1" uuid="a7087ac6-636b-4184-83b3-90418d34b375">
+										<datasetParameter name="dataset">
+											<datasetParameterExpression><![CDATA[$P{dataset}]]></datasetParameterExpression>
+										</datasetParameter>
+										<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+									</datasetRun>
+									<jr:column uuid="b1bef299-7add-41cf-9182-458a660109cc" width="90">
+										<jr:detailCell height="30" rowSpan="1"/>
+									</jr:column>
+								</jr:table>
+							</componentElement>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="21829977-2871-4888-b73b-724f565d7d3e" width="90">
+						<jr:tableFooter height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}.toString()]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader height="40" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="40" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento.requisicao}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<componentElement>
+								<reportElement uuid="7ab54148-3c9f-4b9e-80ad-833c1a5c277d" key="table 9" x="0" y="0" width="90" height="30"/>
+								<jr:table>
+									<datasetRun subDataset="Table Dataset 2" uuid="8e56fa4e-6404-4d1d-b558-629ea793fbf0">
+										<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.JREmptyDataSource(1)]]></dataSourceExpression>
+									</datasetRun>
+									<jr:column uuid="1d124734-6c5c-412c-9f71-3413b513319e" width="90">
+										<jr:detailCell height="29" rowSpan="1"/>
+									</jr:column>
+								</jr:table>
+							</componentElement>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="1a85f4d4-3589-4e94-90f1-8b5bd94a6db3" width="90">
+						<jr:tableFooter height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}.toString()]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader height="40" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="40" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento.problema}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="96112dd9-fd16-481c-82b9-1b5e060d354e" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="30"/>
+								<box>
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{idProblema}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="6b5b2967-43bd-4e9f-bb38-8a8ea2234dbb" width="90">
+						<jr:tableFooter height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}.toString()]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader height="40" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="40" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento.mudanca}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="96112dd9-fd16-481c-82b9-1b5e060d354e" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="30"/>
+								<box>
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{idRequisicaoMudanca}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="65a97626-a87f-4c0f-a8c1-e5de19e11846" width="90">
+						<jr:tableFooter height="30" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$V{REPORT_COUNT}.toString()]]></textFieldExpression>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader height="40" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="90" height="40" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento.ic}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="96112dd9-fd16-481c-82b9-1b5e060d354e" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="90" height="30"/>
+								<box>
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$F{identificacao}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column uuid="5f8211ff-5552-4247-b6ad-5e19f9b387ff" width="101">
+						<jr:tableFooter height="30" rowSpan="1">
+							<textField isBlankWhenNull="true">
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="101" height="30" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+							</textField>
+						</jr:tableFooter>
+						<jr:columnHeader height="40" rowSpan="1">
+							<textField>
+								<reportElement uuid="138a8428-558e-4dbc-b0f3-2fbde9ff0ef1" style="table_TH" mode="Opaque" x="0" y="0" width="101" height="40" forecolor="#000000" backcolor="#EFEFEF"/>
+								<box>
+									<pen lineWidth="0.5"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+									<font fontName="SansSerif" isBold="true"/>
+								</textElement>
+								<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento.vincServico}]]></textFieldExpression>
+							</textField>
+						</jr:columnHeader>
+						<jr:detailCell height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement uuid="96112dd9-fd16-481c-82b9-1b5e060d354e" positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="101" height="30" isRemoveLineWhenBlank="true"/>
+								<box>
+									<pen lineWidth="0.0"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.0"/>
+									<rightPen lineWidth="0.5"/>
+								</box>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="SansSerif"/>
+								</textElement>
+								<textFieldExpression><![CDATA[($F{vinculaConhecimentoServico}.equals("s") ? $R{citcorporeRelatorio.comum.sim}:$R{citcorporeRelatorio.comum.nao})]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement uuid="890b6cb2-0a98-4771-9618-74eace3b482c" key="line-6" x="0" y="3" width="783" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="cb9643d5-d461-4bba-b74d-fb1cfe03154d" key="staticText-29" mode="Opaque" x="310" y="6" width="62" height="18"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.impressoPor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="dab998e3-284b-484b-80d6-929e42c80805" key="textField-45" mode="Opaque" x="8" y="6" width="58" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CIDADE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement uuid="dee6d65d-b2f5-45e0-8f62-19be1b3f9d18" key="textField-46" mode="Opaque" x="375" y="6" width="177" height="18"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NOME_USUARIO}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH:mm:ss" isBlankWhenNull="false">
+				<reportElement uuid="112621b0-0c87-4e38-aa41-39792235d549" key="textField-48" mode="Opaque" x="48" y="6" width="117" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DATA_HORA}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="0aacaa84-f2a3-41a7-9e72-572234f5aceb" x="745" y="6" width="36" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2842391e-65e4-4929-b7f8-95c4b2e42af8" x="671" y="6" width="100" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.pagina}+"   "+$V{PAGE_NUMBER}+"   /    "]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="74">
+			<textField>
+				<reportElement uuid="3d404493-e5d3-429a-8562-b940e9442ae7" positionType="Float" x="8" y="16" width="200" height="24"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento.conhecimentoVinc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3d404493-e5d3-429a-8562-b940e9442ae7" positionType="Float" x="8" y="40" width="200" height="24"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$R{citcorporeRelatorio.comum.relatorioQuantitativoListaBaseConhecimento.conhecimentoNaoVinc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3d404493-e5d3-429a-8562-b940e9442ae7" positionType="Float" x="208" y="40" width="200" height="24"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CONHECIMENTO_NAO_VINCULADO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3d404493-e5d3-429a-8562-b940e9442ae7" positionType="Float" x="208" y="16" width="200" height="24"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="SansSerif" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CONHECIMENTO_VINCULADO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

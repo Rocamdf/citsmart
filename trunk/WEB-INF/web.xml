@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+	version="2.4">
+	<display-name>CitCorporeWeb</display-name>
+	<listener>
+		<listener-class>br.com.centralit.citcorpore.util.CorporeContextListener</listener-class>
+	</listener>
+	<listener>
+		<display-name>Controle de Sessao de Usuarios.</display-name>
+		<listener-class>br.com.centralit.citcorpore.util.ControleSessaoListener</listener-class>
+	</listener>
+	<filter>
+		<filter-name>filtroSeguranca</filter-name>
+		<filter-class>br.com.centralit.citcorpore.util.FiltroSegurancaCITSmart</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>filtroSeguranca</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<listener>
+		<listener-class>org.quartz.ee.servlet.QuartzInitializerListener</listener-class>
+	</listener>
+	<servlet>
+		<servlet-name>citAjax-invoker</servlet-name>
+		<servlet-class>br.com.centralit.citajax.servlet.CITServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>ChatEngine</servlet-name>
+		<servlet-class>com.jsos.chat.ChatEngineServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>citCorpore-invoker</servlet-name>
+		<servlet-class>br.com.centralit.citcorpore.metainfo.servlet.ServletDinamic</servlet-class>
+	</servlet>		
+	
+	<servlet>
+		<servlet-name>citCorpore-getFile</servlet-name>
+		<servlet-class>br.com.centralit.citcorpore.metainfo.servlet.ServletGetFile</servlet-class>
+	</servlet>	
+	
+
+	<!-- Standard Action Servlet Mapping -->
+	<servlet-mapping>
+		<servlet-name>ChatEngine</servlet-name>
+		<url-pattern>/servlet/ChatEngine/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>citAjax-invoker</servlet-name>
+		<url-pattern>*.load</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>citAjax-invoker</servlet-name>
+		<url-pattern>*.find</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>citAjax-invoker</servlet-name>
+		<url-pattern>*.get</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>citAjax-invoker</servlet-name>
+		<url-pattern>*.save</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>citAjax-invoker</servlet-name>
+		<url-pattern>*.restore</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>citAjax-invoker</servlet-name>
+		<url-pattern>*.event</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>citAjax-invoker</servlet-name>
+		<url-pattern>/cit/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>citCorpore-invoker</servlet-name>
+		<url-pattern>*.extern</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>citCorpore-getFile</servlet-name>
+		<url-pattern>*.getFile</url-pattern>
+	</servlet-mapping>	
+
+	<!-- The Usual Welcome File List -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/pages/comuns/acessonegado.jsp</location>
+	</error-page>
+    <session-config>
+        <session-timeout>
+            600
+        </session-timeout>
+    </session-config>
+	<!-- Struts Tag Library Descriptors -->
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/tags/cit</taglib-uri>
+			<taglib-location>/WEB-INF/cit.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/menu</taglib-uri>
+			<taglib-location>/WEB-INF/menu.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/i18n</taglib-uri>
+			<taglib-location>/WEB-INF/i18n.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/jstl-c</taglib-uri>
+			<taglib-location>/WEB-INF/c.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/jstl-fmt</taglib-uri>
+			<taglib-location>/WEB-INF/fmt.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/jstl-fn</taglib-uri>
+			<taglib-location>/WEB-INF/fn.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/jstl-sql</taglib-uri>
+			<taglib-location>/WEB-INF/sql.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/jstl-x</taglib-uri>
+			<taglib-location>/WEB-INF/x.tld</taglib-location>
+		</taglib>
+		<taglib>
+			<taglib-uri>/tags/menuPadrao</taglib-uri>
+			<taglib-location>/WEB-INF/menuPadrao.tld</taglib-location>
+		</taglib>
+	    <taglib>
+			<taglib-uri>/tags/menuRapido</taglib-uri>
+			<taglib-location>/WEB-INF/menuRapido.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	<!-- context-param> <param-name> javax.servlet.jsp.jstl.fmt.localizationContext 
+		</param-name> <param-value>br.com.centralit.citcorpore.i18n.messages_en</param-value> 
+		</context-param -->
+	<context-param>
+		<param-name>config-file</param-name>
+		<param-value>quartz.properties</param-value>
+	</context-param>
+	
+	<!-- Configurando as paginas de erro do sistema -->
+    <error-page>  
+        <error-code>404</error-code>  
+        <location>/pages/error/erro404.jsp</location>  
+    </error-page>  
+    <error-page>  
+        <error-code>500</error-code>  
+         <location>/pages/error/erro500.jsp</location>  
+    </error-page>  
+    <error-page>  
+   		<exception-type>java.lang.*</exception-type>  
+    	<location>/pages/start/start.load</location>  
+	</error-page>
+	
+	<listener>
+		<listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+	</listener>
+    <context-param>
+      <param-name>resteasy.scan</param-name>
+      <param-value>true</param-value>
+    </context-param>
+    
+	<context-param>
+		<param-name>resteasy-resources1</param-name>
+		<param-value>br.com.centralit.citsmart.rest.resource.RestDataResources</param-value>
+	</context-param>
+	<context-param>
+		<param-name>resteasy-resources2</param-name>
+		<param-value>br.com.centralit.citsmart.rest.resource.RestOperationResources</param-value>
+	</context-param>
+	<context-param>
+		<param-name>resteasy-resources3</param-name>
+		<param-value>br.com.centralit.citsmart.rest.resource.RestMobileResources</param-value>
+	</context-param>	
+	<servlet>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<url-pattern>/services/data/*</url-pattern>
+	</servlet-mapping>		  
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>		  
+	<servlet-mapping>
+		<servlet-name>resteasy-servlet</servlet-name>
+		<url-pattern>/mobile/*</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+	  <display-name>DWR Servlet</display-name>
+	  <servlet-name>dwr-invoker</servlet-name>  
+	  <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+	  <init-param>
+	     <param-name>debug</param-name>
+	     <param-value>true</param-value>
+	  </init-param>
+	  <init-param>
+	    <param-name>activeReverseAjaxEnabled</param-name>
+	    <param-value>true</param-value>
+	  </init-param>
+	  <load-on-startup>0</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+	  <servlet-name>dwr-invoker</servlet-name>
+	  <url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	
+</web-app>

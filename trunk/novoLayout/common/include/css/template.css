@@ -1,0 +1,40 @@
+.marginless {
+  margin: 0 0 0px!important;
+}
+
+.navbar.main {
+  height: 75px!important; /* alterado para colocar a logo do citsmart, padrao era 34px */
+  /* background-color: #f2f3f4; 
+  box-shadow: 0 2px 0 0 #f0f0f0;*/
+  border-top: 1px solid #d8d8d8;
+  border-bottom: 1px solid #d8d8d8;
+  margin: 0;
+  position: relative;
+}
+
+.navbar.main .topnav > li {
+  position: relative;
+  float: left;
+  height: 75px!important; /* alterado, pois a div com logo ficou maior */
+  line-height: 33px;
+  display: block;
+  padding: 0;
+  border-right: 1px solid #d8d8d8;
+  border-left: 1px solid #ffffff;
+}
+.nomain {
+  margin: 0;
+  position: relative;
+}
+.contentframe {
+	margin:  0;
+	padding: 0;
+}
+.controls {
+	color: #7c7c7c;
+	margin: 5px 0;
+}
+.campoObrigatorio:after {
+	color:#FF0000;
+	content:"*";
+}

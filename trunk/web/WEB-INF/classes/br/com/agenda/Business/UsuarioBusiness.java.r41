@@ -1,0 +1,22 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package br.com.agenda.Business;
+
+import br.com.agenda.Crud.CrudBusiness;
+import br.com.agenda.Model.Usuario;
+import java.util.List;
+
+/**
+ *
+ * @author Destroyer
+ */
+public interface UsuarioBusiness extends CrudBusiness<Usuario>{
+    public Usuario validarUsuario(Usuario objUsuario) throws Exception ;
+    public boolean validarSenhaUsuario(Usuario objUsuario, String senha2) throws Exception ;
+     public List<Usuario> find(Usuario model) throws Exception ;
+
+
+    
+}

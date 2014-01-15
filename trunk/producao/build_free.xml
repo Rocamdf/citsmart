@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<project name="citsmart" default="war" basedir=".">    
+	<property file="locais.properties"/>
+	<property name="webContent" value=".."/>
+	<property name="web-inf" value="${webContent}/WEB-INF"/>
+	<property name="web-class" value="${web-inf}/classes"/>
+	<property name="web-source" value="${web-inf}/src"/>
+	<property name="web-lib" value="${web-inf}/lib"/>
+	<property name="dist" value="${webContent}/distribuicao"/>
+	
+	<!-- Antes de executar o build verifique os 2 caminhos abaixo. -->
+    <property name="java-lib" value="${java.root}/lib"/>
+	<property name="jboss-lib" value="${jboss.lib.path}/lib"/>
+	
+	<tstamp>
+		<format property="dateTime" pattern="dd.MM.yyyy_hh.mm.ss-aa"/>
+	</tstamp>
+
+	<!-- Compila o projeto -->
+	<target name="compile" depends="init">
+		<delete dir="${web-class}"/>
+		<mkdir dir="${web-class}"/>
+		<javac srcdir="${web-source}" destdir="${web-class}" includeantruntime="false" debug="true" optimize="false" nowarn="true" deprecation="false" source="1.6" memoryinitialsize="80m" memorymaximumsize="1256m" encoding="ISO-8859-1" fork="true">
+			<classpath>
+				<pathelement location="${web-class}"/>
+				<fileset dir="${web-lib}">
+					<include name="**/*.jar"/>
+				</fileset>
+				<fileset dir="${java-lib}">
+					<include name="**/*.jar"/>
+				</fileset>
+				<fileset dir="${jboss-lib}">
+					<include name="**/*.jar"/>
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+
+	<!-- Compacta o arquivo em .war -->
+	<target name="war" depends="compile" >
+		<copydir src="${web-source}" dest="${web-class}" includes="**/*.properties, **/*.xml" />
+		<!-- Copia o diretorio pages para pages_bkp(ao final retorna ao nome original) -->
+		<copy todir="${webContent}/pages_bkp">
+			<fileset dir="${webContent}/pages" />
+		</copy>
+		<!-- Apaga o diretorio pages para criacao de um novo com as paginas free. -->
+		<delete>
+			<fileset dir="${webContent}/pages"/>
+		</delete>
+		
+		<!-- Salva o arquivo menu.xml e o substitui pelo arquivo de menus frees. -->
+		<move file="${webContent}/XMLs/menu.xml" tofile="${webContent}/XMLs/menu_bkp.xml"/>
+		<move file="${webContent}/XMLs/menu_free.xml" tofile="${webContent}/XMLs/menu.xml"/>
+		
+		<!-- Cria o diretorio pages com as paginas free -->
+		<copy todir="${webContent}/pages">
+			<fileset dir="${webContent}/pages_bkp">
+				<include name="acordoNivelServico/*"/>
+				<include name="agendaAtvPeriodicas/*"/>
+				<include name="agendarAtividade/*"/>
+				<include name="alterarSenha/*"/>
+				<include name="atividadePeriodica/*"/>
+				<include name="atividades/*"/>
+				<include name="barraFerramentasIncidentes/*"/>
+				<include name="baseConhecimento/*"/>
+				<include name="baseConhecimentoView/*"/>
+				<include name="cadastroFluxo/*"/>
+				<include name="calendario/*"/>
+				<include name="cargaMensagens/*"/>
+				<include name="cargaUsuarioAd/*"/>
+				<include name="cargos/*"/>
+				<include name="catalogoServico/*"/>
+				<include name="categoriaOcorrencia/*"/>
+				<include name="categoriaGaleriaImagem/*"/>
+				<include name="categoriaPost/*"/>
+				<include name="categoriaServico/*"/>
+				<include name="cliente/*"/>
+				<include name="clienteEmailCentralServico/*"/>
+				<include name="complementoServicosContratos/*"/>
+				<include name="comuns/*"/>
+				<include name="condicaoOperacao/*"/>
+				<include name="consultaMeuTimeSheet/*"/>
+				<include name="consultaSolicitacaoServico/*"/>
+				<include name="consultaTimeSheet/*"/>
+				<include name="contratoQuestionarios/*"/>
+				<include name="contratos/*"/>
+				<include name="contratosAnexos/*"/>
+				<include name="copiarSLA/*"/>
+				<include name="custoAdicionalProjeto/*"/>
+				<include name="dataBaseMetaDados/*"/>
+				<include name="dataManager/*"/>
+				<include name="dataManagerObjects/*"/>
+				<include name="delegacaoTarefa/*"/>
+				<include name="demanda/*"/>
+				<include name="desenhoFluxo/*"/>
+				<include name="designerWorkflow/*"/>
+				<include name="dicionario/*"/>
+				<include name="dinamicViews/*"/>
+				<include name="empregado/*"/>
+				<include name="empresa/*"/>
+				<include name="eventos/*"/>
+				<include name="eventosTree/*"/>
+				<include name="execucaoDemanda/*"/>
+				<include name="exportData/*"/>
+				<include name="fluxo/*"/>
+				<include name="formula/*"/>
+				<include name="fornecedor/*"/>
+				<include name="funcionalidade/*"/>
+				<include name="galeriaImagens/*"/>
+				<include name="ganttSolicitacaoServico/*"/>
+				<include name="gerenciamentoServicos/*"/>
+				<include name="graficos/*"/>
+				<include name="grupo/*"/>
+				<include name="grupoAcesso/*"/>
+				<include name="imagemHistorico/*"/>
+				<include name="importanciaNegocio/*"/>
+				<include name="importManager/*"/>
+				<include name="index/*"/>
+				<include name="informacoesContrato/*"/>
+				<include name="informacoesContratoQuestionario/*"/>
+				<include name="informacoesContratosConfig/*"/>
+				<include name="jornadaTrabalho/*"/>
+				<include name="js/SLA/*"/>
+				<include name="justificacaoFalhas/*"/>
+				<include name="ldap/*"/>
+				<include name="lingua/*"/>
+				<include name="listaOSContrato/*"/>
+				<include name="listaServicosContrato/*"/>
+				<include name="localidade/*"/>
+				<include name="logController/*"/>
+				<include name="login/*"/>
+				<include name="lookup/*"/>
+				<include name="mapaDesenhoServico/**/*"/>
+				<include name="menu/*"/>
+				<include name="modalBaseConhecimento/*"/>
+				<include name="modeloEmail/*"/>
+				<include name="monitoramentoServicos/*"/>
+				<include name="mudarSLA/*"/>
+				<include name="notificacao/*"/>
+				<include name="notificacaoServicoContrato/*"/>
+				<include name="ocorrenciaSolicitacao/*"/>
+				<include name="opiniao/*"/>
+				<include name="origemOcorrencia/*"/>
+				<include name="os/*"/>
+				<include name="osSetSituacao/*"/>
+				<include name="painel/*"/>
+				<include name="painelAtividades/*"/>
+				<include name="palavraGemea/*"/>
+				<include name="parametroCorpore/*"/>
+				<include name="pasta/*"/>
+				<include name="perfilAcesso/*"/>
+				<include name="perfisAcesso/*"/>
+				<include name="pesquisa/*"/>
+				<include name="pesquisaFaq/*"/>
+				<include name="pesquisaSatisfacao/*"/>
+				<include name="pesquisaSolicitacoesServicos/*"/>
+				<include name="pessoasQuestionarios/*"/>
+				<include name="planoMelhoriaTreeView/*"/>
+				<include name="portal/**/*"/>
+				<include name="post/*"/>
+				<include name="prioridade/*"/>
+				<include name="prioridadeSolicitacoes/*"/>
+				<include name="processamentoBatch/*"/>
+				<include name="processamentoEventual/*"/>
+				<include name="refreshuploadAnexos/*"/>
+				<include name="refreshuploadAnexosList/*"/>
+				<include name="relatorioAcompanhamento/*"/>
+				<include name="relatorioBaseConhecimento/*"/>
+				<include name="relatorioControleSla/*"/>
+				<include name="relatorioOrdemServicoUst/*"/>
+				<include name="relatorioPesquisaSatisfacao/*"/>
+				<include name="relatorioQuantitativo/*"/>
+				<include name="relatorioQuantitativoPorServico/*"/>
+				<include name="relatorioValorServicoContrato/*"/>
+				<include name="resumoSolicitacoesServicos/*"/>
+				<include name="scripts/*"/>
+				<include name="servico/*"/>
+				<include name="situacaoServico/*"/>
+				<include name="solicitacaoServicoMultiContratos/*"/>
+				<include name="solicitacaoServicoMultiContratosPortal/*"/>
+				<include name="solicitacaoServicoPortal/*"/>
+				<include name="start/**/*"/>
+				<include name="suspensaoSolicitacao/*"/>
+				<include name="tableSearchVinc/*"/>
+				<include name="tipoFluxo/*"/>
+				<include name="tipoServico/*"/>
+				<include name="tipoUnidade/*"/>
+				<include name="unidade/*"/>
+				<include name="upload/*"/>
+				<include name="uploadAjax/*"/>
+				<include name="uploadFile/*"/>
+				<include name="uploadList/*"/>
+				<include name="usuario/*"/>
+				<include name="valorServicoContrato/*"/>
+				<include name="verificacaoAtendimento/*"/>
+				<include name="visaoAdm/*"/>
+				<include name="visualizarDesempenhoServicosContrato/*"/>
+				<include name="visualizarNotificacoes/*"/>
+				<include name="visualizarUploadTemp/*"/>
+				<include name="tableSearch/*"/>
+			</fileset>
+		</copy>
+		
+		<mkdir dir="${webContent}/pages/citsmartFree" />
+		<touch file="${webContent}/pages/citsmartFree/free.txt"></touch>
+		
+		<!-- Gera o arquivo .war -->
+		<jar destfile="${dist}/citsmart_Community_3.1.0_${dateTime}.war" >
+			<fileset dir="${webContent}" excludes="XMLs/menu_bkp.xml, pages_free/** ,pages_bkp/** ,distribuicao/**/*.*, producao/**/*.*, modelo_dados/**/*.*, tempRelatorio/**/*.*, tempUpload/**/*.*, tempReceitas/**/*.*, temporario/**/*.*, gedcitsaude/**, **/*.java, **/*.log, **/*.DBF, **/*.ged, **/*.doc, **/*.bak, WEB-INF/classes/Constantes.properties"/>
+			<fileset dir="${webContent}/producao/config" includes="**/*"/>
+		</jar>
+		<!-- Apaga o diretorio pages(free). -->
+		<delete>
+			<fileset dir="${webContent}/pages"/>
+		</delete>
+		<!-- Retorna o nome original de pages(full). -->
+		<move todir="${webContent}/pages">
+			<fileset dir="${webContent}/pages_bkp" />
+		</move>
+		
+		<!-- Restaura o arquivo menu.xml e retorna arquivo de menus frees. -->
+		<move file="${webContent}/XMLs/menu.xml" tofile="${webContent}/XMLs/menu_free.xml"/>
+		<move file="${webContent}/XMLs/menu_bkp.xml" tofile="${webContent}/XMLs/menu.xml"/>
+		
+		<delete dir="${webContent}/pages/citsmartFree"></delete>
+	</target>
+
+	<target name="init">
+		<record name="build.log" loglevel="verbose" append="false"/>
+	</target>
+</project>

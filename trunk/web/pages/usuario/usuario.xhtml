@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="../../templates/form.xhtml" >
+        <ui:define name="css_js">
+            <link rel="stylesheet" type="text/css" href="../../css/usuario.css"  />
+            <script type="text/javascript" src="../../javascript/usuario.js" ></script>            
+        </ui:define>
+        <ui:define name="corpo_pesq">
+            
+                <h:panelGrid columns="2">
+                    <h:outputLabel styleClass="lbForm" value="Nome:*" />
+                    <p:inputText id="usrNomePesq" value="#{cUsuario.usrNomePesq}"/> 
+                    
+                    <h:outputLabel styleClass="lbForm" value="Tipo" />
+                    
+                    <p:selectOneMenu value="#{cUsuario.usrTipoPesq}" id="usrTipoPesq" style="width:120px;">
+                        <f:selectItem itemValue="" itemLabel="Todos" />
+                        <f:selectItem itemValue="A" itemLabel="Administrador" />
+                        <f:selectItem itemValue="F"  itemLabel="Funcionário" />
+                        <f:selectItem itemValue="G"  itemLabel="Gerente" />
+                    </p:selectOneMenu>
+                    
+                    <h:outputLabel for="orderBy" value="Ordenar por:" />
+                    <p:selectOneMenu value="#{cUsuario.orderBy}" id="orderBy" required="true">
+                        <f:selectItem itemValue="usr_nome" itemLabel="Nome" />
+                        <f:selectItem itemValue="usr_login" itemLabel="Login" />
+                        <f:selectItem itemValue="usr_tipo" itemLabel="Tipo" />
+                    </p:selectOneMenu>
+                    
+                    <h:outputText />
+                    <p:commandButton value="Pesquisar" ajax="true" 
+                       update="dataTablePesq" actionListener="#{cUsuario.pesquisar}"  />
+                    
+                    <p:commandButton value="alterar" image="ui-icon ui-icon-arrowrefresh-1-w"
+                        actionListener="#{cAgenda.update}"/>
+                    <p:commandButton value="excluir" oncomplete="confirmation.show();" image="ui-icon ui-icon-trash">
+                        <f:setPropertyActionListener value="#{item}" target="#{cAgenda.rowSelect}"/>
+                    </p:commandButton>
+                    
+                    
+                </h:panelGrid>
+            
+            <p:dataTable id="dataTablePesq" var="obj" value="#{cUsuario.listaUsuarios}" paginator="true" rows="10">
+
+                <f:facet name="header">
+                    <h:outputText value="Pesquisa de Usuário" />
+                </f:facet>
+    
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nome" />
+                    </f:facet>
+                    <h:outputText value="#{obj.usrNome}" />
+                </p:column>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Login" />
+                    </f:facet>
+                    <h:outputText value="#{obj.usrLogin}" />
+                </p:column>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Tipo" />
+                    </f:facet>
+                    <h:outputText value="#{obj.usrTipo}" />
+                </p:column>
+                
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Status" />
+                    </f:facet>
+                    <h:outputText value="#{obj.usrSts}" />
+                </p:column>
+                
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Editar" />  
+                    </f:facet>  
+                    <p:commandButton value="Editar" /> 
+                </p:column>               
+                
+                <p:column>  
+                    <f:facet name="header">  
+                        <h:outputText value="Excluir" />  
+                    </f:facet>   
+                    
+                    <p:confirmDialog message="Confirma e exclusão?" width="200"
+                        showEffect="explode" hideEffect="explode"
+                        header="Confirm" severity="alert" widgetVar="confirmation">
+                        <p:commandButton value="Sim" update="dataTablePesq" actionListener="#{cAgenda.delete}" oncomplete="confirmation.hide()"/>
+                        <p:commandButton value="Não" onclick="confirmation.hide()" type="button" />
+                    </p:confirmDialog>
+                </p:column>
+                
+                <p:commandButton value="alterar" image="ui-icon ui-icon-arrowrefresh-1-w"
+                    actionListener="#{cAgenda.update}"/>
+                
+                <p:commandButton value="excluir" oncomplete="confirmation.show();" image="ui-icon ui-icon-trash">
+                    <f:setPropertyActionListener value="#{obj}" target="#{cAgenda.rowSelect}"/>  
+                </p:commandButton>
+                  
+            </p:dataTable>
+
+        </ui:define>
+        <ui:define name="corpo_cad">
+
+            <p:panel>
+            <h:panelGrid columns="2">
+                <h:outputLabel styleClass="lbForm" for="usrNome" value="Nome:*" />
+                <p:inputText id="usrNome" value="#{cUsuario.objUsuario.usrNome}" required="true" />
+                
+                <h:outputLabel styleClass="lbForm" for="usrLogin" value="Login:*" />
+                <p:inputText id="usrLogin" value="#{cUsuario.objUsuario.usrLogin}" required="true" />
+ 
+                <h:outputLabel styleClass="lbForm" for="usrSenha" value="Senha:*" />
+                <p:password id="usrSenha" value="#{cUsuario.objUsuario.usrSenha}" required="true"
+                    promptLabel="Informe a Senha desejada" weakLabel="Fraca"  
+                    goodLabel="Boa" strongLabel="Forte"
+                    title="Senha de usuário"
+                    requiredMessage="Informe a Senha desejada!" />
+                
+                <h:outputLabel value="Confirmação:*" for="usrSenha2" />
+                <p:password id="usrSenha2" value="#{cUsuario.usrSenha2}" required="true"
+                    promptLabel="Informe a Senha desejada" weakLabel="Fraca"  
+                    goodLabel="Boa" strongLabel="Forte"
+                    title="Senha de usuário"
+                    requiredMessage="Informe a Senha desejada!" />
+                
+                <h:outputLabel styleClass="lbForm" for="usrTipo" value="Tipo:*" />
+                <p:selectOneMenu id="usrTipo" required="true" value="#{cUsuario.objUsuario.usrTipo}">
+                    <f:selectItem itemValue="A" itemLabel="Administrador" />
+                    <f:selectItem itemValue="F"  itemLabel="Funcionário" />
+                    <f:selectItem itemValue="G"  itemLabel="Gerente" />
+                </p:selectOneMenu>
+
+                <h:outputLabel styleClass="lbForm" for="usrSts" value="Status:*" />
+                <h:selectOneRadio id="usrSts" value="#{cUsuario.objUsuario.usrSts}">   
+                    <f:selectItem itemValue="true" itemLabel="Ativo" />
+                    <f:selectItem itemValue="false" itemLabel="Inativo" />
+                    <f:converter converterId="BooleanToStringConverter" />
+                </h:selectOneRadio>
+
+                <h:outputLabel />
+                <h:panelGroup>    
+                    <p:commandButton id="btnCadastrar" value="Cadastrar" ajax="true" 
+                       update="msgLogic" actionListener="#{cUsuario.save}" />                    
+                    
+                    <p:commandButton id="btnLimpar" value="Limpar"  ajax="true"
+                        update="msgLogic" actionListener="#{cUsuario.clear}" type="reset" />   
+                </h:panelGroup>
+            </h:panelGrid>
+            </p:panel>
+        </ui:define>
+        <ui:define name="corpo_rel">
+            
+            
+            
+        </ui:define>        
+    </ui:composition>
+</html>
