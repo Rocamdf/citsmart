@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js"></script>
+
+<script type="text/javascript">
+			$(function() {
+				$("[data-goto]").click(function(e) {
+					var gotoPos = $(this).data('goto'), $el = $("div[data-section='" + gotoPos + "']");
+					if ($el.length > 0) {
+						$('html,body').animate({
+							scrollTop : $el.offset().top - 90
+						}, 750, 'swing');
+						$("div#homeContentSections div.contentActive").removeClass("contentActive");
+						$("div#homeContentSections div[data-section='" + gotoPos + "']").addClass("contentActive");
+						e.stopPropagation();
+						e.preventDefault();
+						return false;
+					}
+				});
+				var $nav = $("div#homeContentNav"), $sideNavOriginalPosition = $nav.offset(), navTopCSS = $nav.css('top'), smallSlidesScrollTimer;
+				$(window).bind("scroll.mfhome", function() {
+					var navPosition = ($sideNavOriginalPosition.top - $(window).scrollTop());
+					if (navPosition < 90) {
+						if (navPosition < -3540)
+							$nav.removeClass("fixedNav").addClass("bottomNav");
+						else
+							$nav.removeClass("bottomNav").addClass("fixedNav");
+					} else
+						$nav.removeClass("fixedNav bottomNav");
+					$("div#homeContentSections > div").each(function() {
+						var triggerPosition = $(window).height() / 3;
+						if (($(this).offset().top - $(window).scrollTop()) < triggerPosition && ($(this).offset().top - $(window).scrollTop()) > 0) {
+							$("div#homeContentSections div.contentActive").removeClass("contentActive");
+							$(this).addClass("contentActive");
+							$("div#homeContentNav li a.contentActive").removeClass("contentActive");
+							$("div#homeContentNav li a[data-goto='" + $(this).data("section") + "']").addClass("contentActive");
+						}
+						if ($("div#homeContentSections div.contentActive").length == 0) {
+							$("div#homeContentSections div.online-access").addClass("contentActive");
+						}
+					});
+					if (smallSlidesScrollTimer)
+						clearTimeout(smallSlidesScrollTimer);
+					smallSlidesScrollTimer = setTimeout(checkIfRunSmallSlides, 500);
+				});
+				function accoladesSlides() {
+					var accoladesSlideTimer, accoladesSlideDelay = 5000, accoladesFadeTimer = 750, $currentSlide = $("div#mfStatsAccolades > ul > li:first");
+					var execSlide = function execSlide() {
+						if ($currentSlide.next("li").length == 0)
+							$nextSlide = $currentSlide.parent().find("> li:first");
+						else
+							$nextSlide = $currentSlide.next("li");
+						$nextSlide.fadeIn(accoladesFadeTimer, 'swing');
+						$currentSlide.fadeOut(accoladesFadeTimer, 'swing');
+						$currentSlide = $nextSlide;
+						accoladesSlideTimer = setTimeout(execSlide, accoladesSlideDelay);
+					};
+					accoladesSlideTimer = setTimeout(execSlide, accoladesSlideDelay);
+				};
+				accoladesSlides();
+				var smallSlideTimers = [], smallSlideDelay = 5000, smallSlideStartDelay = 500;
+				function checkIfRunSmallSlides() {
+					$.each($("div[data-section] > ul.csNav > li"), function() {
+						var inrange = $(this).offset().top - $(window).scrollTop();
+						if ($(this).find("> div").length > 1 && $(this).hasClass("featureActive") && (inrange > 0 && inrange < $(window).height())) {
+							var $parent = $(this), $currentSlide = $(this).find("> div:first");
+							clearTimeout(smallSlideTimers[$parent.parents("div[data-section]").data("section")]);
+							var execSlide = function execSlide() {
+								if ($currentSlide.next("div").length == 0) {
+									$nextSlide = $parent.find("> div:first");
+								} else {
+									$nextSlide = $currentSlide.next("div");
+								}
+								$nextSlide.fadeIn(750, 'swing');
+								$currentSlide.fadeOut(750, 'swing');
+								$currentSlide = $nextSlide;
+								smallSlideTimers[$parent.parents("div[data-section]").data("section")] = setTimeout(execSlide, smallSlideDelay);
+							};
+							smallSlideTimers[$parent.parents("div[data-section]").data("section")] = setTimeout(execSlide, smallSlideDelay);
+						} else if ($(this).find("> div").length > 1) {
+							if (smallSlideTimers[$(this).parents("div[data-section]").data("section")])
+								clearTimeout(smallSlideTimers[$(this).parents("div[data-section]").data("section")]);
+						}
+					});
+				};
+				setTimeout(checkIfRunSmallSlides, smallSlideStartDelay);
+				$.each($("div[data-section] > ul.csNav > li"), function() {
+					var clickFadeDelay = 750;
+					var liClick = function() {
+						if (smallSlideTimers[$(this).parents("div[data-section]").data("section")])
+							clearTimeout(smallSlideTimers[$(this).parents("div[data-section]").data("section")]);
+						$(this).parents("ul.csNav").find("li.featureActive > div").fadeOut(clickFadeDelay, "swing", function() {
+							$(this).parents("li.featureActive").removeClass("featureActive");
+						});
+						$(this).find("> div").fadeIn(clickFadeDelay, 'swing', function() {
+							$(this).parents("li").addClass("featureActive");
+						});
+						setTimeout(checkIfRunSmallSlides, (clickFadeDelay + 250));
+					};
+					$(this).click(liClick);
+					$(this).children(":not(span:first)").click(function(e) {
+						e.stopPropagation();
+					});
+				});
+				var $slides = $("ul.sliderContent li"), $currentSlide = $($slides[0]), slideTimer = false, waitTime = 6250;
+				switchSlides = function switchSlides($toSlide, $fromSlide) {
+					if ($toSlide && $fromSlide) {
+						$toSlide.fadeIn(750, 'swing');
+						$fromSlide.fadeOut(750, 'swing');
+						$("ul.sliderControls li.sliderControlActive").removeClass("sliderControlActive");
+						$("ul.sliderControls li[data-category='" + $toSlide.data("category") + "']").addClass("sliderControlActive");
+						$currentSlide = $toSlide;
+						slideTimer = setTimeout(executeSlide, waitTime);
+					}
+				};
+				executeSlide = function executeSlide() {
+					if ($currentSlide.next().length == 0) {
+						$nextSlide = $($slides[0]);
+					} else {
+						$nextSlide = $currentSlide.next();
+					}
+					switchSlides($nextSlide, $currentSlide);
+				};
+				$("ul.sliderControls .sliderArrow").click(function() {
+					var $toSlide = false;
+					switch($(this).data("direction")) {
+						case "prev":
+							{
+								$toSlide = ($currentSlide.prev().length == 0 ? $($slides[$slides.length - 1]) : $currentSlide.prev());
+							}
+							break;
+						case "next":
+							{
+								$toSlide = ($currentSlide.next().length == 0 ? $($slides[0]) : $currentSlide.next());
+							}
+							break;
+					}
+					if (slideTimer)
+						clearTimeout(slideTimer);
+					switchSlides($toSlide, $currentSlide);
+				});
+				$("ul.sliderControls li[data-category]").click(function() {
+					var $toSlide = $("ul.sliderContent li[data-category='" + $(this).data("category") + "']");
+					if ($toSlide.data('category') == $currentSlide.data('category')) {
+						if (slideTimer)
+							clearTimeout(slideTimer);
+						slideTimer = setTimeout(executeSlide, waitTime);
+						return false;
+					}
+					if (slideTimer)
+						clearTimeout(slideTimer);
+					$toSlide.fadeIn(750, 'swing');
+					$currentSlide.fadeOut(750, 'swing');
+					$("ul.sliderControls li.sliderControlActive").removeClass("sliderControlActive");
+					$("ul.sliderControls li[data-category='" + $toSlide.data("category") + "']").addClass("sliderControlActive");
+					$currentSlide = $toSlide;
+				});
+				slideTimer = setTimeout(executeSlide, waitTime);
+			});
+		</script>
+<style type="text/css">
+.sliderBg {
+	position: relative;
+	height: 428px;
+	width: 90%;
+	margin: 0 auto;
+	border: 1px solid #CCCCCC;
+	background: #F1F1F1;
+/*	background:	url(images/home_top_bg.jpg)center center repeat-x;
+	background: -webkit-gradient(linear, left top, left bottom, from(#4D90FE), to(#3786DC));
+	background: -moz-linear-gradient(top,  #4D90FE,  #3786DC);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#4D90FE', endColorstr='#3786DC');*/
+}
+
+.wrap {
+	width: 960px;
+	margin: 0 auto;
+}
+
+.sliderControls {
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: bold;
+	color: #1F4061;
+	text-align: center;
+	padding: 15px 0;
+	background: url(images/sliderControls_bg.png)	center bottom no-repeat;
+	position: relative;
+	z-index: 11;
+}
+
+ol,ul {
+	list-style: none;
+}
+
+.sliderContent {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 450px;
+}
+
+.sliderContent li.sliderContentActive {
+	display: block;
+	z-index: 1;
+}
+
+.sliderControls li {
+	display: inline-block;
+	padding: 0 15px;
+	position: relative;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+	cursor: pointer;
+}
+
+.sliderContent li {
+	color: black;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 450px;
+	width: 100%;
+	overflow: hidden;
+	display: none;
+	z-index: 1;
+}
+
+.sliderText {
+	position: relative;
+	z-index: 10;
+	width: 960px;
+	margin: 90px auto 0;
+}
+
+.foregroundAnimation {
+	position: absolute;
+	height: 519px;
+	width: 960px;
+	top: 0;
+	left: 50%;
+	margin-left: -480px;
+	z-index: 9;
+}
+
+.backgroundAnimation {
+	position: absolute;
+	height: 429px;
+	width: 100%;
+	top: 0;
+	z-index: 8;
+	overflow: hidden;
+	background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, .25)), color-stop(5%, transparent) );
+	background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, .25) -10px, transparent 20px );
+	background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, .25) -10px, transparent 20px );
+	background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, .25) -10px, transparent 20px );
+	background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, .25) -10px,	transparent 20px );
+	background-image: linear-gradient(bottom, rgba(0, 0, 0, .25) -10px,	transparent 20px );
+}
+
+.sliderText h3 {
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	font-size: 60px;
+	line-height: 70px;
+	letter-spacing: -0.04em;
+	text-shadow: 0 2px 3px rgba(0, 0, 0, .2);
+}
+
+.sliderText p {
+	font-size: 18px;
+	line-height: 31px;
+	margin-top: 20px;
+	width: 400px;
+	color: #4D90FE;
+}
+
+.sliderText a {
+	position: relative;
+	color: white;
+	text-shadow: 0 -1px 0 black;
+	border-bottom: 1px dotted rgba(255, 255, 255, .4);
+}
+li.sliderArrow {
+	position: absolute;
+	height: 24px;
+	width: 24px;
+	background: #4188DA;
+	background: rgba(0, 0, 0, .2);
+	padding: 0;
+	border-radius: 50%;
+	box-shadow: inset 0 1px 0 0 rgba(0, 0, 0, .4);
+	left: 0;
+	margin: -12px 100px 0;
+	top: 50%;
+}
+
+.sliderControls li:last-child {
+	left: auto;
+	right: 0;
+}
+
+.sliderControls li:last-child::after {
+	border-color: transparent transparent transparent white;
+	margin-right: 6px;
+}
+
+li.sliderArrow::after {
+	content: "";
+	position: absolute;
+	right: 50%;
+	top: 50%;
+	color: #2B70B6;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
+	margin-right: 15px;
+	margin-top: 5px;
+	border-style: solid;
+	border-color: transparent white transparent transparent;
+	border-width: 6px;
+}
+
+.sliderControls li::after {
+	content: "";
+	position: absolute;
+	right: -5px;
+	top: 0;
+	color: #2B70B6;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
+}
+
+li.sliderControlActive, li.sliderControlActive:hover {
+	color: white;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, .5);
+	cursor: default;
+}
+body {
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+::selection, selection {
+	background: rgba(0, 160, 250, 0.5);
+	color: white;
+	text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
+}
+</style>
+</head>
+<body>
+
+	<div class="sliderBg">
+		<ul class="sliderControls wrap">
+			<li class="sliderArrow" data-direction="prev"></li>
+			<li class="" data-category="access">Access</li>
+			<li class="sliderControlActive" data-category="sharing">Sharing</li>
+			<li class="" data-category="storage">Storage &amp; Backup</li>
+			<li class="last" data-category="mobile">Desktop &amp; Mobile</li>
+			<li class="sliderArrow" data-direction="next"></li>
+		</ul>
+		<ul class="sliderContent">
+			<li id="" class="sliderContentActive" data-category="access"
+				style="display: none;">
+				<div class="sliderText">
+					<h3>Access Anywhere</h3>
+					<p>
+						From home to work or Anchorage to Tokyo - securely access your
+						files <strong>ANYWHERE</strong> your travels take you! Your files
+						are <i>always</i> safe and sound on MediaFire.
+					</p>
+				</div>
+			</li>
+			<li id="" class="" data-category="sharing"
+				style="display: list-item;">
+				<div class="sliderText">
+					<h3>Simple Sharing</h3>
+					<p>
+						Especially when you use MediaFire. <i>Quickly</i> and <i>simply</i>
+						share images, documents, video, audio, and <b>ANY</b> other type
+						of file. Share via email, instant message, Facebook, Twitter, or
+						embed on your webpage – it’s super easy! We promise!
+					</p>
+				</div>
+			</li>
+			<li id="" class="" data-category="storage">
+				<div class="sliderText">
+					<h3>Want 50GB for FREE?</h3>
+					<p>
+						You’re in luck! All new MediaFire accounts <b>START with 50GB</b>
+						of free storage! Need more? Professional and Business accounts get
+						up to 1000 GB!
+					</p>
+				</div>
+			</li>
+			<li id="" class="" data-category="mobile">
+				<div class="sliderText">
+					<h3>
+						The Cloud in<br>Your Pocket
+					</h3>
+					<p>
+						…and on your desk! Upload and share files right from your desktop
+						or mobile device with<br>MediaFire Express and Mobile! 
+					</p>
+				</div>
+			</li>
+		</ul>
+	</div>
+
+</body>
+</html>

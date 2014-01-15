@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="../../templates/formAcesso.xhtml" >
+        <ui:define name="css_js">
+            <link rel="stylesheet" type="text/css" href="../../css/acesso.css"  />
+            <script type="text/javascript" src="../../javascript/acesso.js" ></script>            
+        </ui:define>
+        
+        <ui:define name="corpo_pesq">
+            <h:panelGrid columns="2" width="500" styleClass="panelGrid">
+                <h:column><h:outputText styleClass="outputText" value="Usuário*:"/></h:column>
+          <p:autoComplete  id="usrNome" value="#{cAcesso.objUsuario.usrNome}" completeMethod="#{cAcesso.complete}"/>
+           <h:outputText styleClass="outputText " value="Menu*:"/>
+           <p:selectOneMenu id="acessMenuId" required="true"  style="width: 150px;" requiredMessage="Escolha uma opção!" value="#{cAcesso.objAcesso.acessMenuId}"> 
+               <f:selectItems value="#{cAcesso.listMenu}"/> 
+           </p:selectOneMenu>
+              <!-- DataTable--> 
+            <p:dataTable id="acesso" var="menuAcesso" >  
+ 
+                <p:column headerText="Menu" >  
+            <h:outputText value="teste" />  
+        </p:column>  
+  
+        <p:column headerText="Alteração">  
+            <h:outputText  /> 
+            <p:selectBooleanCheckbox />
+        </p:column>  
+  
+        <p:column headerText="Pesquisa">  
+            <h:outputText value="#{car.manufacturer}" />  
+        </p:column>  
+
+    </p:dataTable>  
+           
+            </h:panelGrid>
+        </ui:define>
+        
+        <ui:define name="corpo_rel">
+            <h:panelGrid columns="8" cellpadding="10" styleClass="panelGrid">                   
+                <h:outputText value="Usuario: " styleClass="outputText" /> 
+                <p:autoComplete  id="usrNome" value="#{cAcesso.objUsuario.usrNome}" completeMethod="#{cAcesso.complete}"/>
+                    <f:selectItems value="#{cAgenda.listUf}" />
+              
+                                
+            </h:panelGrid>  
+            <br/><p:commandButton id="pesquisar" value="pesquisar" actionListener="#{cAgenda.pesquisa}" update="tbl_pesq"/>&nbsp;
+            <p:commandButton id="limpar_pesq" value="limpar" action="#{cAgenda.clear}" update="msgLogic"/>&nbsp; 
+            <p:separator/>
+            <p:dataTable id="tbl_pesq" value="#{cAgenda.tabModelPesq}" var="item" rows="5" emptyMessage="Nenhum registro encontrado!"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         selectionMode="single">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Usuario"/>
+                    </f:facet>
+                    <h:outputText value="#{item.usrNome}"/>                    
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Acessos"/>
+                    </f:facet>
+                    <h:outputText value="#{item.acessMenuId}"/>
+                </p:column>
+            </p:dataTable>
+        </ui:define> 
+        
+    </ui:composition>
+</html>

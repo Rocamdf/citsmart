@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:loadBundle basename="br.com.agenda.Constants.Constantes" var="Constantes"/>    
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />  
+        <link rel="Shortcut Icon" href="img/liferay.ico" />
+        <title>#{Constantes.titulo_sistema}</title>
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <script type="text/javascript" src="javascript/index.js" />
+    </h:head>
+    <h:body>
+        <div id="body" class="ui-corner-all">
+            <div id="top">
+
+            </div>
+            <div id="form">
+                <h:form id="validarUsuario" >
+                    <p:tooltip global="true" showEffect="fade" hideEffect="explode"  />
+                    <p:ajaxStatus onstart="statusDialog.show();" onsuccess="statusDialog.hide();"/>
+                    <p:dialog modal="true" id="processando" widgetVar="statusDialog" header="Status"
+                              draggable="false" closable="false" showEffect="fade" hideEffect="explode">
+                        Processando...
+                    </p:dialog>  
+                    <p:dialog header="Validando Usuário" id="alerta"  widgetVar="alerta" showEffect="fade" hideEffect="explode" height="100">  
+                        <p:commandButton value="Fechar" onclick="alerta.hide();" type="button" />  
+                    </p:dialog>                      
+                    <div id="imgLogin" class="ui-corner-all">
+                        <table id="Table_01" width="850" height="525" border="0" cellpadding="0" cellspacing="0">
+                            <tr>
+                                <td colspan="3">
+                                    <img id="imgTop" src="img/index2_01.jpg" width="850" height="213" title="" border="0" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2">
+                                    <img id="imgRight" src="img/index2_02.jpg" width="225" height="312" title="" border="0" />
+                                </td>
+                                <td width="397" height="120" align="center" background="img/index2_03.jpg" alt="">
+                                    <label class="lbform">Usuário:*
+                                        <p:inputText id="user" value="#{cUsuario.objUsuario.usrLogin}" required="true" autocomplete="false" label="Login"  requiredMessage="Usuário."  />
+                                    </label>
+                                    <label class="lbform">Senha:*
+                                        <p:password id="senha" value="#{cUsuario.objUsuario.usrSenha}" required="true" label="Senha"  requiredMessage="Senha." feedback="false"/>
+                                    </label>
+                                    <h1 />
+                                    <label>
+                                        <p:commandButton value="logar" title="Clique aqui para logar!" actionListener="#{cUsuario.validarUsuario}" update="validarUsuario" ajax="true" />
+                                    </label>
+                                    <label>
+                                        <p:commandButton value="limpar" title="Clique aqui para limpar os campos!" onclick="document.validarUsuario.reset();" immediate="true" type="reset" />
+                                    </label>                                
+                                </td>
+                                <td rowspan="2">
+                                    <img id="imgLeft" src="img/index2_04.jpg" width="228" height="312" title="" border="0" /> 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img id="imgBottom" src="img/index2_05.jpg" width="397" height="192" title="" border="0" />
+                                </td>
+                            </tr>
+                        </table> 
+                    </div>
+                    <p:growl id="msgLogic" showDetail="true" showSummary="true" />
+                </h:form>
+            </div>
+            <div id="footer">
+                <span>
+                    <h:form id="form2">
+                        <p:tooltip for="powered" targetPosition="topLeft" position="bottomRight" value="Central IT - Tecnologia em Negócios" />
+                        <p:commandLink hreflang="http://www.centralit.com.br/" rel="http://www.centralit.com.br/" target="_blank" action="http://www.centralit.com.br/" actionListener="http://www.centralit.com.br/" onclick="window.location='http://www.centralit.com.br/';" id="powered" value="Powered by Central IT" />  
+                    </h:form>                    
+                </span>
+            </div>            
+        </div>
+    </h:body>
+</html>
+

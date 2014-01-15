@@ -1,0 +1,46 @@
+<project name="citsmart" default="war" basedir=".">    
+    <description>Monta o WAR do CITSMART</description>    
+    <property file="locais_BN.properties"/>
+    <property name="webContent" value="${projeto.web.path}"/>
+    <property name="localFilesConfig" value="${local.files.config}"/>
+    <property name="web-inf" value="${webContent}/WEB-INF"/>
+    <property name="web-class" value="${web-inf}/classes"/>
+    <property name="web-source" value="${web-inf}/src"/>
+    <property name="web-lib" value="${web-inf}/lib"/>
+    <property name="java-lib" value="${java.root}/lib"/>
+	<property name="jboss-lib" value="${jboss.lib.path}/lib"/>
+    <property name="dist" value="${distribuicao.path}"/>    
+    <tstamp>
+        <format property="dateTime" pattern="dd.MM.yyyy_hh.mm.ss-aa"/>
+    </tstamp>    
+	<!-- Compila o projeto -->
+    <target name="compile" depends="init">
+        <delete dir="${web-class}"/>
+        <mkdir dir="${web-class}"/>
+        <javac srcdir="${web-source}" destdir="${web-class}" includeantruntime="false" debug="true" optimize="false" nowarn="true" deprecation="false" source="1.6" memoryinitialsize="80m" memorymaximumsize="1256m" encoding="ISO-8859-1" fork="true">
+            <classpath>
+                <pathelement location="${web-class}"/>
+                <fileset dir="${web-lib}">
+					<include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="${java-lib}">
+                    <include name="**/*.jar"/>
+                </fileset>
+                <fileset dir="${jboss-lib}">
+                    <include name="**/*.jar"/>
+                </fileset>            	
+            </classpath>
+        </javac>
+    </target>  	
+	<target name="war" depends="compile" >
+    	<copydir src="${web-source}" dest="${web-class}" includes="**/*.properties, **/*.xml" />    
+        <jar destfile="${dist}/citsmart_BN_${dateTime}.war" >
+            <fileset dir="${webContent}" excludes="distribuicao/**/*.*, producao/**/*.*, modelo_dados/**/*.*, tempRelatorio/**/*.*, tempUpload/**/*.*, tempReceitas/**/*.*, temporario/**/*.*, gedcitsaude/**, **/*.java, **/*.log, **/*.DBF, **/*.ged, **/*.doc, **/*.bak, WEB-INF/classes/Constantes.properties"/>
+            <fileset dir="${localFilesConfig}" includes="**/*"/>    	
+        </jar>
+    </target>	
+	<target name="init">
+	  <record name="build.log" loglevel="verbose" append="false"/>
+	</target>	
+</project>
+

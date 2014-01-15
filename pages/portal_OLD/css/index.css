@@ -1,0 +1,452 @@
+@CHARSET "ISO-8859-1";
+
+* {
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	list-style: none;
+}
+input[type=text], input[type=password], textarea, select {
+	padding: 3px;
+}
+.panel{
+
+font-family: arial;
+font-size: 11px;
+    background: -moz-linear-gradient(center top , #F9F9F9, #DDDDDD) repeat scroll 0 0 #F5F5F5;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    display: inline-block;
+    list-style: none outside none;
+    margin: 0 5px 10px;
+    text-align: center;
+    width: 98%;
+    min-height: 40px;
+    cursor: move;
+    color:#666;
+}
+.panel a:hover{
+
+    background: -moz-linear-gradient(center top , #DDDDDD, #F9F9F9) repeat scroll 0 0 #F5F5F5;
+}
+.panel_titulo{
+vertical-align: middle;
+padding-top: 1em;}
+
+ tr th {
+ 
+    border-bottom: 1px solid #CACACA;
+    border-top: 1px solid #CACACA;
+    border-left: 1px solid #CACACA;
+    box-shadow: 1px 0 0 0 #F8F8F8 inset;
+    padding:  3px 5px;
+    font-weight: normal;
+   
+    }
+    
+table thead tr {
+    box-shadow: 0 1px 0 0 #FFFFFF inset;
+}
+table thead tr {
+    background: url("../../../imagens/default-header.png") repeat-x scroll left top #EEEEEE;
+}
+table tr td {
+    border-bottom: 1px solid #DCDCDC;
+    border-left: 1px solid #E0E0E0;
+    padding: 7px 20px;
+}
+table {
+    border-bottom: 1px solid #DCDCDC;
+    border-right: 1px solid #E0E0E0;
+
+}
+
+table.form, table.form tr td {
+border:none;
+
+}
+.portlet-header {
+background: url("../../../imagens/leftNavBg.png") repeat-x scroll 0 0 #EFEFEF;
+    border-bottom: 1px solid #D5D5D5;
+    border-top: 1px solid #D5D5D5;
+    height: 25px;
+    position: relative;
+    line-height: 25px;
+}
+
+hr{
+	display: block;
+	float: left;
+	width: 100%;	
+	margin: 5px 0 5px 0;
+}
+#estructure {
+	display: block;
+	width: 99.8%;
+	height: 100%;
+	text-align: center;
+	position: relative;
+	font-size:11px;
+	background: #eee;
+	
+}
+#estructure #top {
+	display: block;
+	width: 100%;
+	margin-bottom: 7px;
+	 background: -moz-linear-gradient(center top , #eee, #fff) repeat scroll 0 0 #F5F5F5;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+    height: 79px;
+    position: absolute;
+}
+
+#estructure #body {
+	display: block;
+	width: auto;
+	height: 90%;
+	text-align: center;
+	padding: 100px 10px 0;
+}
+#estructure #body #left {
+	display: block;
+	float: left;
+	height: 500px;
+	width: 155px;
+	margin-right: 10px;
+	padding: 5px;
+}
+#estructure #body #right {
+	display: block;
+	float: left;
+	min-height: 500px;	
+	padding: 5px;
+	text-align: left;
+	width: 99%;
+
+}
+.btnLogin{
+	display: block;
+	float: right;
+}
+.server{
+	display: block;
+	float: left;
+	width: 49%;
+}
+.host{
+	display: block;
+	float: left;
+	width: 99%;
+}
+#popupLogin label {
+	display: block;
+	float: left;
+	width: 265px;
+	margin: 0 0 4px 0;
+}
+#popupLogin label input[type=text], #popupLogin label input[type=password]
+	{
+	width: 265px;
+}
+.connectedSortable{
+	/* cursor: move; */
+	
+}
+
+#estructure #footer {
+background: url("../../../template_new/images/backgrounds/top-bg.png") repeat scroll 0 0 #262829;
+    bottom: 0;
+    box-shadow: 0 -1px 2px #404040;
+    font-size: 13px;
+    padding-bottom: 5px;
+    /*position: fixed;*/
+    text-shadow: 0 1px 1px #000000;
+    width: 100%;
+    z-index: 1000;
+    height: 25px;
+    font-family: arial;
+}
+#estructure .floatLeft {
+	float: left;	
+}
+#estructure .floatRight{
+	float: right;
+}
+#estructure .logo a img {
+    display: block;
+}
+#estructure .paddingL10 {
+    padding-left: 10px;
+}
+#estructure .controls {
+    display: inline;
+}
+#estructure .item {
+    position: relative;
+    width: 380px;
+    padding: 10px 0 0;
+    height: 70px;
+}
+#usuario
+{
+	bottom: 20px;
+    left: 10px;
+    position: absolute;
+}
+#unidade
+{
+	bottom: 5px;
+    left: 10px;
+    position: absolute;
+}
+#estructure .item .login {
+   display: block;
+    width: 170px;
+    margin: 5px	;
+    position: absolute;
+    right: 5px;
+    top: 0px
+}
+#estructure .copy > div {
+    padding: 4px 0;
+    color:#DDDDDD;
+}
+#estructure .centered {
+    margin: auto;
+    width: 980px;
+}
+#estructure .alignCenter {
+    text-align: center;
+}
+#estructure .f11 {
+    font-size: 11px;
+}
+#estructure .marginT20 {
+    margin-top: 10px;
+}
+#estructure .clear{
+	clear: both;
+}
+/*Portlets
+*/
+#column1, #column2, #column3, #column4 { width: 100%; height: 100%; }
+.portlet { float:left; margin: 0 1em 1em 0; border: 2px solid #D0D0D0 }
+.portlet-header { margin: 0.3em; padding-bottom: 4px; padding-left: 0.2em; cursor: move; }
+.portlet-header .ui-icon { float: right; }
+.portlet-content { padding: 0.4em; display: block; overflow-y: scroll; height: inherit;  }
+.ui-sortable-placeholder { border: 1px dotted black; visibility: visible !important; height: 50px !important; }
+.ui-sortable-placeholder * { visibility: hidden; }
+
+#body div.nosidebar {
+    float: none !important;
+    width: 99% !important;
+    padding: 0 !important;
+}
+
+
+
+.w500
+{
+	width: 500px;
+	height: auto;
+}
+
+
+#login label {
+	display: block;
+	float: left;
+	width: 265px;
+	margin: 0 0 4px 0;
+	text-align: left;
+	font-size: 16px;
+}
+#login label input[type=text], #login label input[type=password]
+	{
+	width: 265px;
+}
+.redes_sociais
+{
+	left: 0;
+	top:0px;
+    margin: 5px;
+    position: absolute;
+}
+#container
+{
+	position: relative;	
+}
+#setaColumn
+{
+	width: 35px;
+	height: 35px;
+	top: -10px;
+	left: -30px;
+	position: absolute;
+	z-index: 1000;
+}
+.show{background: url("/citsmart/template_new/images/icons/large/grey/bended_arrow_left.png") no-repeat scroll 0 0 transparent; }
+.hide{background:url("/citsmart/template_new/images/icons/large/grey/bended_arrow_right.png") no-repeat scroll 0 0 transparent; }
+
+.passar_mouse{
+	text-decoration: none;
+}
+.passar_mouse:hover
+{
+	text-decoration: underline;
+	color: #245DC1 !important;
+}
+.sort1 , .sort2 {
+	position:relative;
+}
+.sort1 span , .sort2 span {
+	top: 0px !important;
+	right: 0px !important;
+	position: absolute;	
+
+}
+.btclick
+{
+	cursor: pointer;
+}
+.lineHeight30
+{
+	 line-height: 30px;
+}
+.lFloat{
+	float: left;
+}
+.rFloat{
+	float: right;
+}
+
+.portletInicial {
+	max-width: 750px!important;
+	margin: 7px 0!important;
+	clear: both!important;
+	color: #333!important;
+	padding: 0 10px;
+}
+.portletInicial-border {
+	border: #DDD 1px solid!important;
+	border-top-color: #EEE!important;
+	border-bottom-color: #BBB!important;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)!important;
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.15)!important;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15)!important;
+}
+.portletInicial-border .content {
+	padding: 12px!important;
+	min-height: 110px;
+}
+.content .header {
+	min-height: 35px!important;
+	text-align:left;
+}
+.content .header .fn {
+	font-weight: bold!important;
+}
+.portletInicial-border .content .content-entry a{
+	padding: 2px 0;
+	margin-right: 30px;
+	float: left;
+	clear: both;
+}
+.portletInicial-border .content .content-entry .line {
+	display: block;
+}
+.portletInicial-border .content .content-entry .line span {
+	padding: 2px 0;
+	float: right;
+}
+
+
+.portletInicial-border .content .content-entry a:HOVER {
+	text-decoration: underline;
+	color: #4D90FE;
+}
+
+.clear{
+	clear: both;
+}
+.page {
+	width: 900px;
+	padding: 10px;
+}
+.page .tit {
+	padding-bottom: 15px;
+}
+.page .subtit {
+	padding: 10px 0;
+	font-weight: normal;
+}
+.page .cont {
+	padding-bottom: 30px;
+}
+.cab{
+	padding: 10px;
+}
+.line{
+	position: relative;
+	height: 70px;
+}
+.line img {
+	padding: 2px !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 70px;
+	height: 55px;
+}
+.line a {
+	padding-left: 80px !important;
+	margin: 0px !important;
+	float: none !important;
+	clear: none !important;
+	display: block !important;
+}
+.line div {
+	padding-left: 80px !important;
+	margin: 0px !important;
+	float: none !important;
+	clear: none !important;
+	display: block !important;
+}
+
+#popupNovaSolicitacao label {
+	display: block;
+	float: left;
+	width: 400px;
+	margin: 0 0 4px 0;
+}
+#popupNovaSolicitacao label input[type=text], #popupNovaSolicitacao label input[type=password] {
+	width: 400px;
+}
+#popupNovaSolicitacao textarea {
+	width: 700px;
+	margin: 10px 0;
+}
+fieldset {
+	padding:5px;
+	padding:5px;
+}
+.h1 {
+	font-size: 35px;
+	padding: 7px 15px 6px 5px;
+	margin: 5 5 15px 5;
+	color: #444;
+	text-align: center;
+}
+
+#novaSolicitacao{
+	
+	padding: 5px;
+	border-radius: 3px 3px 3px 3px;
+	-moz-border-radius: 3px 3px 3px 3px;
+	-webkit-border-radius: 3px 3px 3px 3px;
+	margin-bottom: 3px;
+}
+
+
+
+

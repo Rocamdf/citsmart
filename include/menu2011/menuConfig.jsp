@@ -1,0 +1,6 @@
+<script type="text/javascript" src="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/js/MenuGenerico.js"></script>
+<link rel="alternate stylesheet" type="text/css" id="listmenu-o" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/css/menu/listmenu_o.css" title="Vertical 'Office'" />
+<link rel="alternate stylesheet" type="text/css" id="listmenu-v" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/css/menu/listmenu_v.css" title="Vertical 'Earth'" />
+<link rel="stylesheet" type="text/css" id="listmenu-h" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/css/menu/listmenu_h.css" title="Horizontal 'Earth'" />
+<link rel="stylesheet" type="text/css" id="fsmenu-fallback" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/css/menu/listmenu_fallback.css" />
+<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/css/menu/divmenu.css" />

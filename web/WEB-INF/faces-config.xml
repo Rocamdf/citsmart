@@ -1,0 +1,20 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<!-- =========== FULL CONFIGURATION FILE ================================== -->
+
+<faces-config version="2.0"
+    xmlns="http://java.sun.com/xml/ns/javaee" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+    <converter>
+        <converter-id>BooleanToStringConverter</converter-id>
+        <converter-class>br.com.agenda.Utils.BooleanToStringConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>StringToMD5Converter</converter-id>
+        <converter-class>br.com.agenda.Utils.StringToMD5Converter</converter-class>
+    </converter>
+    <lifecycle>
+        <phase-listener>br.com.agenda.Utils.SessionUtils</phase-listener>
+    </lifecycle>
+</faces-config>

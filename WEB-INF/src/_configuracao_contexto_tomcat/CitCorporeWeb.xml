@@ -1,0 +1,33 @@
+<Context path="/citcorpore" reloadable="true" docBase="D:\CentralIT\Projetos\CitCorporeWeb" workDir="D:\CentralIT\Projetos\CitCorporeWeb\work" >
+  <Resource type="javax.sql.DataSource" description="DB Connection" auth="Container" name="jdbc/citcorpore"/>
+  <ResourceParams name="jdbc/citcorpore">
+    <parameter>
+      <name>maxWait</name>
+      <value>5000</value>
+    </parameter>
+    <parameter>
+      <name>maxActive</name>
+      <value>4</value>
+    </parameter>
+    <parameter>
+      <name>password</name>
+      <value>sa</value>
+    </parameter>
+    <parameter>
+      <name>url</name>
+      <value>jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=citcorpore</value>
+    </parameter>
+    <parameter>
+      <name>driverClassName</name>
+      <value>com.microsoft.jdbc.sqlserver.SQLServerDriver</value>
+    </parameter>
+    <parameter>
+      <name>maxIdle</name>
+      <value>2</value>
+    </parameter>
+    <parameter>
+      <name>username</name>
+      <value>sa</value>
+    </parameter>
+  </ResourceParams>
+</Context>

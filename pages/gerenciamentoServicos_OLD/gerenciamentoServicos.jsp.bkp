@@ -1,0 +1,529 @@
+itemConfiguracao<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="/tags/cit" prefix="cit" %>
+<%@ taglib uri="/tags/i18n" prefix="i18n" %>
+<%@page import="br.com.centralit.citcorpore.util.WebUtil"%>
+<%@page import="br.com.centralit.citcorpore.bean.UsuarioDTO"%>
+<%@page import="br.com.citframework.dto.Usuario"%>
+<%
+    response.setCharacterEncoding("ISO-8859-1");
+    response.setHeader( "Cache-Control", "no-cache");
+    response.setHeader( "Pragma", "no-cache");
+    response.setDateHeader ( "Expires", -1);
+    
+%>
+<html>
+<head>
+	<%@include file="/include/security/security.jsp" %>
+    <%@page import="br.com.centralit.citcorpore.util.CitCorporeConstantes"%>
+
+    <script>var URL_INITIAL = '<%=br.com.citframework.util.Constantes.getValue("SERVER_ADDRESS")%><%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/';</script>
+        
+    <TITLE>CIT Corpore</TITLE>
+	<%@include file="/include/noCache/noCache.jsp" %>
+	<%@include file="/include/javaScriptsComuns/javaScriptsComuns.jsp" %>	
+	
+    <LINK type="text/css" rel="stylesheet" href="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/css/layout-default-latest.css">
+    <LINK type="text/css" rel="stylesheet" href="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/css/slick.grid.css">
+
+    <!-- theme is last so will override defaults --->
+    <LINK type="text/css" rel="stylesheet" href="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/css/jquery.ui.all.css">
+                    
+
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/fancybox/jquery.fancybox-1.3.4.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/tinyeditor/style.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/slidernav/slidernav.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/syntax_highlighter/styles/shCore.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/syntax_highlighter/styles/shThemeDefault.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/uitotop/css/ui.totop.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/fullcalendar/fullcalendar.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/isotope/isotope.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/elfinder/css/elfinder.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/tiptip/tipTip.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/uniform/css/uniform.aristo.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/multiselect/css/ui.multiselect.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/selectbox/jquery.selectBox.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/colorpicker/css/colorpicker.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/themeroller/Aristo.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/css/fonts.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/css/text.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/css/grid.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/css/main.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/css/theme_base.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/css/buttons.css">
+	<link rel="stylesheet" type="text/css" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/css/ie.css">
+	<link rel="stylesheet" href="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/jQueryGantt/css/style.css" />
+	
+	
+    <style title="" type="text/css">
+
+    .ui-layout-center ,
+    .ui-layout-east ,
+    .ui-layout-east .ui-layout-content {
+        padding:        0;
+        overflow:       hidden;
+    }
+    .hidden {
+        display:        none;
+    }
+    .ui-widget-header {
+        padding:        7px 15px 9px;
+    }
+    h2.loading {
+        border:         0;
+        font-size:      24px;
+        font-weight:    normal;
+        margin:         30% 0 0 40%;
+    }
+    .cell-title {      
+        font-weight: bold;    
+    }    
+    .cell-effort-driven {      
+        text-align: center;    
+    }  
+    
+  
+    
+    </style>
+
+    <script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/js/jquery-latest.js"></script>
+    <script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/js/jquery-ui-latest.js"></script>
+    <script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/js/jquery.layout-latest.js"></script>
+    <script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/js/debug.js"></script>
+
+    <!-- SlickGrid and its dependancies (not sure what they're for?) --->
+    <script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/js/jquery.rule-1.0.1.1-min.js"></script>
+    <script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/js/jquery.event.drag.custom.js"></script>
+
+    <script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/js/slick.editors.js"></script>
+    <script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+                    .getValue("CONTEXTO_APLICACAO")%>/js/slick.grid.js"></script>
+
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/template_new/js/uniform/jquery.uniform.min.js"></script>
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/template_new/js/autogrow/jquery.autogrowtextarea.js"></script>
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/template_new/js/multiselect/js/ui.multiselect.js"></script>
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/template_new/js/selectbox/jquery.selectBox.min.js"></script>
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/template_new/js/timepicker/jquery.timepicker.js"></script>
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/template_new/js/colorpicker/js/colorpicker.js"></script>
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/template_new/js/tiptip/jquery.tipTip.minified.js"></script>
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/template_new/js/validation/jquery.validate.min.js" type="text/javascript"></script>		
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/template_new/js/uitotop/js/jquery.ui.totop.js" type="text/javascript"></script>
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/custom/ui.js"></script>
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes.getValue("CONTEXTO_APLICACAO")%>/template_new/js/custom/forms.js"></script>
+					
+	<script type="text/javascript" src="<%=br.com.citframework.util.Constantes
+					.getValue("SERVER_ADDRESS")%><%=br.com.citframework.util.Constantes
+					.getValue("CONTEXTO_APLICACAO")%>/js/json2.js"></script>
+					
+	<script type="text/javascript" src="<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/js/PopupManager.js"></script>
+
+					
+
+    <script type="text/javascript">
+
+	  AddLinkSolicitacao = function(row, cell, value, columnDef, dataContext) {
+	  	var tarefaDto = arrayTarefas[row];
+	  	var solicitacaoDto = tarefaDto.solicitacaoDto;
+	  	if (solicitacaoDto != null) {
+	  	  var str = "<img src='" + URL_INITIAL + "imagens/edit.png' style='cursor:pointer;' title='Editar solicitação' onclick='editarSolicitacao("+solicitacaoDto.idSolicitacaoServico+")'>";
+	  	  str += "&nbsp;<img src='" + URL_INITIAL + "imagens/executar.png' style='cursor:pointer;' title='Reclassificar solicitação' onclick='reclassificarSolicitacao("+solicitacaoDto.idSolicitacaoServico+")'>&nbsp;&nbsp;"+solicitacaoDto.idSolicitacaoServico;
+          return str;
+	    }else
+	      return "";	  
+	  };
+
+	  AddSituacao = function(row, cell, value, columnDef, dataContext) {
+	  	var tarefaDto = arrayTarefas[row];
+	  	var solicitacaoDto = tarefaDto.solicitacaoDto;
+	  	if (solicitacaoDto != null) {
+	  	  var situacao = solicitacaoDto.descrSituacao;
+	  	  if (solicitacaoDto.atrasoSLA > 0.0) 
+	      	return situacao + " <img src='" + URL_INITIAL + "imagens/flag.png'>"; 
+	      else
+	      	return situacao;	
+	    }else
+	      return "";	  
+	  };
+
+	  AddAtraso = function(row, cell, value, columnDef, dataContext) {
+	  
+	  	var tarefaDto = arrayTarefas[row];
+	  	var solicitacaoDto = tarefaDto.solicitacaoDto;
+	  	var result = "";
+	  	if (solicitacaoDto != null && solicitacaoDto.atrasoSLA > 0) 
+	      	result = solicitacaoDto.atrasoSLAStr;
+        return result;	  
+	  };
+
+	  AddSelTarefa = function(row, cell, value, columnDef, dataContext) {
+        return "<input type='radio' name='selTarefa' value='S'/>";
+	  };
+
+	  AddBotaoIniciarTarefa = function(row, cell, value, columnDef, dataContext) {
+	  	var tarefaDto = arrayTarefas[row];
+	  	if (value == 'S' && (!tarefaDto.percentualExecucao || tarefaDto.percentualExecucao == 0.0)) 
+	      return "<img src='" + URL_INITIAL + "imagens/edit.png' style='cursor:pointer;' title='Iniciar/Editar tarefa' onclick='prepararExecucaoTarefa("+tarefaDto.idItemTrabalho+","+tarefaDto.solicitacaoDto.idSolicitacaoServico+",\"I\")'>";
+	    else
+	      return "";	  
+	  };
+
+	  AddBotaoExecutarTarefa = function(row, cell, value, columnDef, dataContext) {
+	  	var tarefaDto = arrayTarefas[row];
+	  	if (value == 'S') 
+	      return "<img src='" + URL_INITIAL + "imagens/executar.png' style='cursor:pointer;' title='Executar tarefa' onclick='prepararExecucaoTarefa("+tarefaDto.idItemTrabalho+","+tarefaDto.solicitacaoDto.idSolicitacaoServico+",\"E\")'>";
+	    else
+	      return "";	  
+	  };
+
+	  AddBotaoDelegarTarefa = function(row, cell, value, columnDef, dataContext) {
+	  	var tarefaDto = arrayTarefas[row];
+	  	if (value == 'S') 
+	      return "<img src='" + URL_INITIAL + "imagens/go-up-on.gif' style='cursor:pointer;' title='Delegar tarefa' onclick='exibirDelegacaoTarefa("+tarefaDto.idItemTrabalho+","+tarefaDto.solicitacaoDto.idSolicitacaoServico+",\""+tarefaDto.elementoFluxoDto.documentacao+"\")'>";
+	    else
+	      return "";	  
+	  };
+	  
+    var	arrayTarefas   = []
+    ,   gridTarefa     = {}
+    ,   tarefas		   = []
+    ,   colunasTarefa = [
+            { id: "iniciar"	        	, name: ""         		, field: "iniciar"              , width: 25,	formatter: AddBotaoIniciarTarefa, resizable:false    	}
+        ,   { id: "executar"	        , name: ""         		, field: "executar"             , width: 25,	formatter: AddBotaoExecutarTarefa, resizable:false    	}
+        ,   { id: "delegar"	        	, name: ""         		, field: "delegar"              , width: 25,	formatter: AddBotaoDelegarTarefa, resizable:false    	}
+        ,  	{ id: "idSolicitacao"      	, name: "Número"		, field: "idSolicitacao"       	, width: 80,	formatter: AddLinkSolicitacao, resizable:false	   }
+        ,   { id: "contrato"			, name: "Contrato"		, field: "contrato"	       		, width: 100    }
+        ,   { id: "origem"				, name: "Origem"		, field: "origem"	       		, width: 80    }
+        ,   { id: "servico"				, name: "Serviço"		, field: "servico"	       		, width: 150    }
+        ,   { id: "solicitante"			, name: "Solicitante"	, field: "solicitante"	       	, width: 150    }
+        ,   { id: "dataHoraSolicitacao"	, name: "Criada em"		, field: "dataHoraSolicitacao"	, width: 110   }
+        ,   { id: "prioridade"			, name: "Prioridade"	, field: "prioridade"	       	, width: 70    }
+        ,   { id: "atrasoSLA"       	, name: "Atraso" 		, field: "atrasoSLA"           	, width: 80,   	formatter: AddAtraso, resizable:false 		}
+        ,   { id: "dataHoraLimite"		, name: "Prazo limite"	, field: "dataHoraLimite"		, width: 110   }
+        ,   { id: "situacao"       		, name: "Situação"     	, field: "situacao"           	, width: 90,	formatter: AddSituacao, resizable:false    	}
+        ,   { id: "descricao"			, name: "Tarefa atual"	, field: "descricao"    	 	, width: 180    }
+        ,   { id: "responsavelAtual"	, name: "Designada para", field: "responsavelAtual"     , width: 120    }
+        ]
+    ,   gridOptions = {
+            editable:               false
+        ,   asyncEditorLoading:     false
+        ,   enableAddRow:           false
+        ,   enableCellNavigation:   true
+        ,   enableColumnReorder:    true
+        }
+    ;
+
+	exibirTarefas = function(json_tarefas) {
+		var tarefas = [];
+		//json_tarefas = '';
+		//$("#ajaxX").text(json_tarefas);
+		arrayTarefas = JSON.parse(json_tarefas);
+		for(var i = 0; i < arrayTarefas.length; i++){
+			var idSolicitacao = "";
+			var contrato = "";
+			var origem = "";
+			var servico = "";
+			var solicitante = "";
+			var prioridade = "";
+			var situacao = "";
+			var dataHoraSolicitacao;
+			var dataHoraLimite;
+
+			var tarefaDto = arrayTarefas[i];
+			var solicitacaoDto = tarefaDto.solicitacaoDto;
+			if (solicitacaoDto != null) {
+				idSolicitacao = ""+solicitacaoDto.idSolicitacaoServico;
+				origem = ""+solicitacaoDto.origem;
+				contrato = ""+solicitacaoDto.contrato;
+				servico = ""+solicitacaoDto.servico;
+				solicitante = ""+solicitacaoDto.solicitante;
+				prioridade = ""+solicitacaoDto.prioridade;
+				dataHoraSolicitacao = solicitacaoDto.dataHoraSolicitacaoStr;
+				dataHoraLimite = solicitacaoDto.dataHoraLimiteStr;
+			} 
+	        tarefas[i] = {
+			        		 iniciar:			tarefaDto.executar
+			        		,executar:			tarefaDto.executar
+			        		,delegar:			tarefaDto.delegar
+	        				,idSolicitacao:		idSolicitacao
+	        			 	,contrato: 			contrato
+	        			 	,origem: 			origem
+	        			 	,servico: 			servico
+	        			 	,solicitante: 		solicitante
+	        			 	,prioridade: 		prioridade
+	        			 	,dataHoraSolicitacao: dataHoraSolicitacao
+	        			 	,descricao: 		tarefaDto.elementoFluxoDto.documentacao
+			        		,status:	 		""
+			        		,atrasoSLA:	 		""
+	        			 	,dataHoraLimite: 	dataHoraLimite
+	        			 	,responsavelAtual:  tarefaDto.responsavelAtual
+	        			}
+		}
+        gridTarefa = new Slick.Grid( myLayout.contents.south,  tarefas,  colunasTarefa, gridOptions );
+	};
+
+    var myLayout;
+    var popup;
+	popup = new PopupManager(1000, 900, "<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/");
+
+    $(document).ready(function () {
+		$( "#POPUP_VISAO" ).dialog({
+			title: 'VisÃ£o',
+			width: 900,
+			height: 600,
+			modal: true,
+			autoOpen: false,
+			resizable: false,
+			show: "fade",
+			hide: "fade"
+			}); 
+			
+		$("#POPUP_VISAO").hide();
+		
+		$( "#POPUP_BUSCA" ).dialog({
+			title: 'Busca Rápida',
+			width: 250,
+			height: 300,
+			modal: false,
+			autoOpen: false,
+			resizable: false
+			}); 
+		
+		$( "#popupCadastroRapido" ).dialog({
+			title: 'Cadastro Rápido',
+			width: 900,
+			height: 600,
+			modal: true,
+			autoOpen: false,
+			resizable: false,
+			show: "fade",
+			hide: "fade"
+			}); 
+
+        // create the layout - with data-table wrapper as the layout-content element
+        myLayout = $('body').layout({
+        	west__size:         200
+        ,	south__size:        250
+        ,   west__onresize:     function (pane, $pane, state, options) {
+                                    var $content    = $pane.children('.ui-layout-content')
+                                    ,   gridHdrH    = $content.children('.slick-header').outerHeight()
+                                    ,   paneHdrH    = $pane.children(':first').outerHeight()
+                                    ,   paneFtrH    = $pane.children(':last').outerHeight()
+                                    ,   $gridList   = $content.children('.slick-viewport') ;
+                                    $gridList.height( state.innerHeight - paneHdrH - paneFtrH - gridHdrH );
+                                }
+        ,   south__onresize:   function (pane, $pane, state, options) {
+                                    var gridHdrH    = $pane.children('.slick-header').outerHeight()
+                                    ,   $gridList   = $pane.children('.slick-viewport') ;
+                                    $gridList.height( state.innerHeight - gridHdrH );
+                                    document.form.fireEvent('exibeTarefas');
+                                }
+        ,    east__initClosed:   true
+        ,	 east__size:		 0
+        });
+
+        $('body > h2.loading').hide(); // hide Loading msg
+		document.getElementById('fraSolicitacaoServico').src = "about:blank";
+	    myLayout.hide('north');
+    });
+
+
+	voltar = function(){
+		window.location = '<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/indexcitcorpore/index.jsp';
+	};
+	
+	editarSolicitacao = function(idSolicitacao) {
+		myLayout.close("south");
+		document.getElementById('fraSolicitacaoServico').src = "about:blank";
+		document.getElementById('fraSolicitacaoServico').src = "<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/solicitacaoServico/solicitacaoServico.load?idSolicitacaoServico="+idSolicitacao;
+	};
+
+	reclassificarSolicitacao = function(idSolicitacao) {
+		myLayout.close("south");
+		document.getElementById('fraSolicitacaoServico').src = "about:blank";
+		document.getElementById('fraSolicitacaoServico').src = "<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/solicitacaoServico/solicitacaoServico.load?idSolicitacaoServico="+idSolicitacao+"&reclassificar=S";
+	};
+
+	prepararExecucaoTarefa = function(idTarefa,idSolicitacao,acao) {
+		document.getElementById('fraSolicitacaoServico').src = "about:blank";
+		document.form.idTarefa.value = idTarefa;
+		document.form.acaoFluxo.value = acao;
+		document.form.fireEvent('preparaExecucaoTarefa');
+	};
+
+	exibirDelegacaoTarefa = function(idTarefa,idSolicitacao,nomeTarefa) {
+		document.getElementById('fraVisao').src = "about:blank";
+		document.getElementById('fraVisao').src = "<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/delegacaoTarefa/delegacaoTarefa.load?idSolicitacaoServico="+idSolicitacao+"&idTarefa="+idTarefa+"&nomeTarefa="+nomeTarefa;
+		$( "#POPUP_VISAO" ).dialog({ height: 400 });
+		$( "#POPUP_VISAO" ).dialog({ title: 'Delegar tarefa' });
+		$( "#POPUP_VISAO" ).dialog( 'open' );
+	};
+
+	exibirVisao = function(titulo,idVisao,idFluxo,idTarefa,acao){
+		myLayout.close("south");
+		document.getElementById('fraSolicitacaoServico').src = "about:blank";
+		document.getElementById('fraSolicitacaoServico').src = "<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/dinamicViews/dinamicViews.load?modoExibicao=J&idVisao="+idVisao+"&idFluxo="+idFluxo+"&idTarefa="+idTarefa+"&acaoFluxo="+acao;
+		//Versao anterior - codigo comentado abaixo.
+		//document.getElementById('fraVisao').src = "about:blank";
+		//document.getElementById('fraVisao').src = "<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/dinamicViews/dinamicViews.load?modoExibicao=J&idVisao="+idVisao+"&idFluxo="+idFluxo+"&idTarefa="+idTarefa+"&acaoFluxo="+acao;
+		//$( "#POPUP_VISAO" ).dialog({ height: 600 });
+		//$( "#POPUP_VISAO" ).dialog({ title: titulo });
+		//$( "#POPUP_VISAO" ).dialog( 'open' );
+	};
+	
+	fecharVisao = function(){
+		$( "#POPUP_VISAO" ).dialog( 'close' );
+		document.getElementById('fraSolicitacaoServico').src = "about:blank";
+		document.form.fireEvent('exibeTarefas');
+		myLayout.open("south");			
+	};
+				
+	abrirSolicitacao = function(){
+		myLayout.close("south");
+		document.getElementById('fraSolicitacaoServico').src = "about:blank";
+		document.getElementById('fraSolicitacaoServico').src = "<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/solicitacaoServico/solicitacaoServico.load";
+	};
+
+	exibirUrl = function(titulo, url){
+		myLayout.close("south");
+		document.getElementById('fraSolicitacaoServico').src = "about:blank";
+		document.getElementById('fraSolicitacaoServico').src = "<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/"+url;
+		//Versao anterior - codigo comentado abaixo.
+		//document.getElementById('fraVisao').src = "about:blank";
+		//document.getElementById('fraVisao').src = "<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/"+url;
+		//$( "#POPUP_VISAO" ).dialog({ height: 600 });
+		//$( "#POPUP_VISAO" ).dialog({ title: titulo });
+		//$( "#POPUP_VISAO" ).dialog( 'open' );
+	};
+
+	fecharSolicitacao = function(){
+		myLayout.open("south");
+		document.getElementById('fraSolicitacaoServico').src = "about:blank";
+		document.form.fireEvent('exibeTarefas');			
+	};
+	
+	atualizarListaTarefas = function() {
+		myLayout.open("south");
+		document.form.numeroContratoSel.value = document.formPesquisa.numeroContratoSel.value;
+		document.form.idSolicitacaoSel.value = document.formPesquisa.idSolicitacaoSel.value;
+		document.form.fireEvent('exibeTarefas')
+	}
+	
+	abrePopup = function(obj,func) {
+		popup.abrePopup('usuario','()');
+	}
+
+	
+	
+    </script>
+
+</head>
+<body>
+
+	<h2 class="loading">Carregando...</h2>
+	<div class="ui-layout-north hidden"></div>
+
+	<div class="ui-layout-west hidden">
+	    <div class="ui-layout-content">
+			<form name='formPesquisa' id='form' action='<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/gerenciamentoServicos/gerenciamentoServicos'>
+			<div id="sair"  style="display: block; float: left; height: 50px; width: 98%;">
+				<button  type="button" class="light img_icon has_text" style="width: 156px; margin-left: 2px;" onclick="voltar()" >
+					<span >Voltar</span>
+				</button>					
+			</div>			
+			<div id="estrutura" style="display: block; float: left;">
+				<div id="titulo">
+					<label class="titulo tab_header clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" style="font-weight:bold;font-size:12px; margin-left: 2px; color: #462726; letter-spacing: 2px;text-align: center;">Busca Rápida</label>
+				</div>
+				<div id="corpo">
+					<label>Contrato:
+						<input type='text' name="numeroContratoSel" id="numeroContratoSel" size="20" />
+					</label>
+					<label>Nº da solicitação:
+						<input type='text' name="idSolicitacaoSel" id="idSolicitacaoSel" size="10" style="width: 77px !important" />		 
+					</label>
+					<label>
+						<img border="0" title="Pesquisar" style="cursor:pointer" src="<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/imagens/search.png" onclick="atualizarListaTarefas()">&nbsp;
+						<img border="0" title="Limpar" 	  style="cursor:pointer" src="<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/imagens/clear.png" onclick="document.formPesquisa.clear();atualizarListaTarefas()">							
+					</label>
+					<hr />		
+					<label>
+						<button  type="button" class="light img_icon has_text" onclick="abrirSolicitacao()">
+							<img border="0" title="Cadastrar nova solicitação" src="<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/imagens/documents.png" /><span >Nova Solicitação</span>
+						</button>					
+					</label>			
+				</div>					
+			</div>
+	         </form>
+		</div>
+	</div>
+
+	<div class="ui-layout-center hidden">
+	    <table width='100%' height='100%'>
+	         <tr>
+	         	<td width='100%'>
+					<iframe id='fraSolicitacaoServico' src='about:blank' width="100%" height="100%"></iframe>
+				</td>
+	         	<!-- <td width='50%'>
+					<iframe id='fraVisao' src='about:blank' width="100%" height="100%"></iframe>
+				</td> -->
+			</tr>
+		</table>		
+	</div>	
+
+	<!-- <div class="ui-layout-east hidden"></div> -->
+	<div class="ui-layout-south hidden">
+	    <div >	
+	    	<div class="tab_header clearfix ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all" style="height: 32px; line-height: 30px; padding: 7px;">
+	    		<span style="font-weight:bold;font-size:16px; margin-left: 10px; color: #462726; letter-spacing: 2px;">Solicitações</span>
+	    		<span style="display: block; float: right;">
+					<button type="button" class="light img_icon has_text" onclick="atualizarListaTarefas()" >
+						<img title="Atualizar lista de tarefas" src="<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/imagens/refresh.png" /><span>Atualizar</span>
+					</button>	    		
+	    		</span>
+	    	</div>	
+	    </div>
+	   
+	    <div class="ui-layout-content"></div>
+	</div>
+	
+	<form name='form' id='form' action='<%=CitCorporeConstantes.CAMINHO_SERVIDOR%><%=request.getContextPath()%>/pages/gerenciamentoServicos/gerenciamentoServicos'>
+		<input type='hidden' name='idFluxo'/>
+		<input type='hidden' name='idVisao'/>
+		<input type='hidden' name='idTarefa'/>
+		<input type='hidden' name='acaoFluxo'/>
+		<input type='hidden' name='idUsuarioDestino'/>
+		<input type='hidden' name='numeroContratoSel'/>
+		<input type='hidden' name='idSolicitacaoSel'/>
+		
+	</form>
+	
+	<div id="POPUP_VISAO">
+		<iframe id='fraVisao' src='about:blank' width="100%" height="100%"></iframe>
+	</div>
+		
+	<div id="popupCadastroRapido">
+          <iframe id="frameCadastroRapido" name="frameCadastroRapido" width="100%" height="100%"></iframe>
+	</div>
+
+</html>
+

@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"      
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="../../templates/form.xhtml" >
+        <ui:define name="css_js">
+            <link rel="stylesheet" type="text/css" href="../../css/agenda.css"  />
+            <script type="text/javascript" src="../../javascript/agenda.js" ></script>            
+        </ui:define>
+        <ui:define name="corpo_pesq">            
+            <h:panelGrid columns="8" cellpadding="10" styleClass="panelGrid">                 
+                <h:outputText value="Data: " styleClass="outputText" />  
+                <p:inputMask id="agendaData" required="true" validatorMessage="Digite a data!" value="#{cAgenda.objAgenda.agendaData}" mask="99/99/9999" maxlength="10" />    
+                <h:outputText value="Uf: " styleClass="outputText" /> 
+                <p:selectOneMenu id="ufId" value="#{cAgenda.objUf.ufId}" style="width: 150px;">
+                    <f:selectItems value="#{cAgenda.listUf}" />
+                </p:selectOneMenu>  
+                <h:outputText value="Cidade: " styleClass="outputText" /> 
+                <p:selectOneMenu id="agendaCidId" value="#{cAgenda.objAgenda.agendaCidId}" style="width: 150px;">
+                    <f:selectItems value="#{cAgenda.listCidade}" />
+                </p:selectOneMenu>                  
+            </h:panelGrid>  
+            <br/><p:commandButton id="pesquisar" value="pesquisar" actionListener="#{cAgenda.pesquisa}" update="tbl_pesq" ajax="true"/>&nbsp;
+            <p:commandButton id="limpar_pesq" value="limpar" action="#{cAgenda.clear}" update="msgLogic"/>&nbsp; 
+            <p:separator/>
+            <p:dataTable id="tbl_pesq" value="#{cAgenda.tabModelPesq}" var="item" rows="5" emptyMessage="Nenhum registro encontrado!"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         selectionMode="single">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Data"/>
+                    </f:facet>
+                    <h:outputText value="#{item.agendaData}"/>
+
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText style="width: 350px;" value="Local"/>
+                    </f:facet>
+                    <h:outputText value="#{item.agendaLocal}"/>
+                </p:column>
+                <p:column style="width: 80px;">
+                    <f:facet name="header">
+                        <h:outputText value="Status"/>
+                    </f:facet>
+                    <p:selectBooleanCheckbox value="#{item.agendaSts}" style="margin: 0 auto;">
+                        <f:selectItem itemValue="#{item.agendaSts}" itemDisabled="true"/>
+                    </p:selectBooleanCheckbox>
+                </p:column>
+                <p:column style="width: 200px;">
+                    <f:facet name="header">
+
+                    </f:facet>
+                    <p:commandButton value="alterar" image="ui-icon ui-icon-arrowrefresh-1-w"
+                                     actionListener="#{cAgenda.update}"/>
+                    <p:commandButton value="excluir" oncomplete="confirmation.show();" image="ui-icon ui-icon-trash">
+                        <f:setPropertyActionListener value="#{item}" target="#{cAgenda.rowSelect}"/>
+                    </p:commandButton>
+                </p:column>
+            </p:dataTable>
+            <p:confirmDialog message="Confirma e exclusão?" width="200"  
+                             showEffect="explode" hideEffect="explode"  
+                             header="Confirm" severity="alert" widgetVar="confirmation">
+                <p:commandButton value="Sim" update="tbl_pesq" actionListener="#{cAgenda.delete}" oncomplete="confirmation.hide()"/>  
+                <p:commandButton value="Não" onclick="confirmation.hide()" type="button" />
+            </p:confirmDialog>              
+        </ui:define>
+        <ui:define name="corpo_cad">
+            <h:panelGrid columns="2" cellpadding="10" styleClass="panelGrid">                 
+                <h:outputText value="Data: " styleClass="outputText" />  
+                <p:inputMask id="agendaData" required="true" validatorMessage="Digite a data!" value="#{cAgenda.objAgenda.agendaData}" mask="99/99/9999" maxlength="10" />   
+                <h:outputText value="Hora Inicial: " styleClass="outputText" />  
+                <p:inputMask id="agendaHoraInicial" required="true" validatorMessage="Digite a hora inicial!" value="#{cAgenda.objAgenda.agendaHoraInicial}" mask="99:99:99" maxlength="10" />                  
+                <h:outputText value="Hora Final: " styleClass="outputText" />  
+                <p:inputMask id="agendaHoraFinal" required="true" validatorMessage="Digite a hora final!" value="#{cAgenda.objAgenda.agendaHoraFinal}" mask="99:99:99" maxlength="10" />                                  
+                <h:outputText value="Bloquear Dia: " styleClass="outputText" /> 
+                <p:selectOneRadio id="agendaBloquearDia" required="true" requiredMessage="Escolha uma opção!" value="#{cAgenda.objAgenda.agendaBloquearDia}">  
+                    <f:selectItems value="#{cAgenda.agendaBloquearDia}"/> 
+                </p:selectOneRadio>  
+                <h:outputText value="Uf: " styleClass="outputText" /> 
+                <p:selectOneMenu id="ufId" value="#{cAgenda.objUf.ufId}" style="width: 150px;">
+                    <f:selectItems value="#{cAgenda.listUf}" />
+                </p:selectOneMenu>  
+                <h:outputText value="Cidade: " styleClass="outputText" /> 
+                <p:selectOneMenu id="agendaCidId" value="#{cAgenda.objAgenda.agendaCidId}" style="width: 150px;">
+                    <f:selectItems value="#{cAgenda.listCidade}" />
+                </p:selectOneMenu> 
+                <h:outputText value="Categorização: " styleClass="outputText" /> 
+                <p:selectOneMenu id="agendaCategorizacao" style="width: 150px;" value="#{cAgenda.objAgenda.agendaCategorizacao}">  
+                    <f:selectItem itemLabel="A Confirmar" itemValue="A Confirmar" />  
+                    <f:selectItem itemLabel="Confirmado" itemValue="Confirmado" />  
+                    <f:selectItem itemLabel="Pessoal" itemValue="Pessoal" />  
+                    <f:selectItem itemLabel="Política" itemValue="Política" />  
+                    <f:selectItem itemLabel="Reservada" itemValue="Reservada" />  
+                </p:selectOneMenu>   
+                <h:outputText value="Natureza do compromisso: " styleClass="outputText" /> 
+                <p:selectOneRadio id="agendaNaturezaCompromisso" value="#{cAgenda.objAgenda.agendaNaturezaCompromisso}">  
+                    <f:selectItem itemLabel="Ação" itemValue="Ação" />  
+                    <f:selectItem itemLabel="Movimento" itemValue="Movimento" />  
+                </p:selectOneRadio>    
+                <h:outputText value="Assunto: " styleClass="outputText" /> 
+                <p:editor id="agendaAssunto" value="#{cAgenda.objAgenda.agendaAssunto}" width="1000" height="100"/>  
+                <h:outputText value="Setor: " styleClass="outputText" /> 
+                <p:selectOneMenu id="agendaSetorId" required="true" style="width: 150px;" requiredMessage="Escolha uma opção!" value="#{cAgenda.objAgenda.agendaSetorId}">  
+                    <f:selectItems value="#{cAgenda.listSetor}"/> 
+                </p:selectOneMenu> 
+                <h:outputText value="Solicitante: " styleClass="outputText" /> 
+                <p:autoComplete id="pessoaNome" size="150" value="#{cAgenda.objPessoa.pessoaNome}" completeMethod="#{cAgenda.complete}" maxResults="10"/>                
+            </h:panelGrid> 
+        </ui:define>
+        <ui:define name="corpo_rel">
+            <h:panelGrid columns="8" cellpadding="10" styleClass="panelGrid">                 
+                <h:outputText value="Data: " styleClass="outputText" />  
+                <p:inputMask id="agendaData" required="true" validatorMessage="Digite a data!" value="#{cAgenda.objAgenda.agendaData}" mask="99/99/9999" maxlength="10" />    
+                <h:outputText value="Uf: " styleClass="outputText" /> 
+                <p:selectOneMenu id="ufId" value="#{cAgenda.objUf.ufId}" style="width: 150px;">
+                    <f:selectItems value="#{cAgenda.listUf}" />
+                </p:selectOneMenu>  
+                <h:outputText value="Cidade: " styleClass="outputText" /> 
+                <p:selectOneMenu id="agendaCidId" value="#{cAgenda.objAgenda.agendaCidId}" style="width: 150px;">
+                    <f:selectItems value="#{cAgenda.listCidade}" />
+                </p:selectOneMenu>                  
+            </h:panelGrid>  
+            <br/><p:commandButton id="pesquisar" value="pesquisar" actionListener="#{cAgenda.pesquisa}" update="tbl_pesq"/>&nbsp;
+            <p:commandButton id="limpar_pesq" value="limpar" action="#{cAgenda.clear}" update="msgLogic"/>&nbsp; 
+            <p:separator/>
+            <p:dataTable id="tbl_pesq" value="#{cAgenda.tabModelPesq}" var="item" rows="5" emptyMessage="Nenhum registro encontrado!"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15"
+                         selectionMode="single">
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Data"/>
+                    </f:facet>
+                    <h:outputText value="#{item.agendaData}"/>                    
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Local"/>
+                    </f:facet>
+                    <h:outputText value="#{item.agendaLocal}"/>
+                </p:column>
+            </p:dataTable>
+        </ui:define>        
+    </ui:composition>
+</html>

@@ -1,0 +1,104 @@
+/* 
+    Document   : index
+    Created on : 12/11/2011, 09:34:45
+    Author     : Destroyer
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, Helvetica, cursive, sans-serif;
+    font-size: 13px;
+    color: #000;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+#body{
+    display: block; 
+    width: 90%;
+    height: 550px; 
+    padding: 5px;
+    margin: 0 auto;
+    border: 1px solid #0D4C82;
+    margin-top: 50px;
+    background-color: #D5E7F2;
+}
+#body #top{
+    display: block;
+    text-align: left;
+}
+#body #form{
+    display: block;
+    text-align: center;
+}
+#body #form label{
+    display: block;
+    float: left;
+}
+#body #form .lbform{
+    width: 192px;
+    margin-right: 5px;
+    text-align: left;
+    margin-top: 15px;
+}
+#body #form .lbform input{
+    width: 184px;
+}
+#body #form h1{
+    display: block;
+    float: left;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+#body #form button{
+    width: 100px;
+}
+.ui-dialog{
+    width: 250px;
+    text-align: left;
+}
+.ui-growl{
+    width: 290px;
+    text-align: left;
+}
+div#validarUsuario:msgLogic{
+    color: gray;
+}
+#body #footer{
+    display: block;
+    text-align: right;
+}
+#body #form #imgLogin{
+    display: block;
+    text-align: left;
+    width: 850px;  
+    border: 1px solid #7B97AF;
+    background-color: #C0D2DE;
+    margin: 0 auto;
+    margin-top: 11px;
+}
+#body #footer span a{
+    font-weight: normal;
+    font-style: italic;
+    font-size: 11px;
+    color: #006B71;
+}
+#body #footer span a:hover{
+    color: #50829D;
+}
+#body #footer #qtip-3{
+    width: 250px;
+}
